@@ -24,9 +24,43 @@ header {
 .header-navigation {
     display: flex;
     align-items: center;
+}
+
+.navigation-left {
+    display: flex;
+    align-items: center;
     gap: 32px;
+    margin-left: 48px;
 }
 
 .header-navigation a {
+    color: var(--color-white);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2;
     text-decoration: none;
+    transition: color var(--transition-default);
+}
+
+.header-navigation a:hover {
+    color: var(--color-primary);
+}
+
+.language-switch {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.language-switch button {
+    background: none;
+    border: none;
+    color: var(--color-white);
+    cursor: pointer;
+    font: inherit;
+    padding: 0;
+}
+
+.language-switch button.active {
+    color: var(--color-primary);
 }
