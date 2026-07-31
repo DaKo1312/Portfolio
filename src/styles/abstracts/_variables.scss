@@ -1,18 +1,19 @@
 :root {
-    /* Colors */
     --color-primary: #3dcfb6;
+    --color-primary-muted: rgba(61, 207, 182, 0.5);
     --color-background: #1c1c1c;
+    --color-background-deep: #08463b;
     --color-surface: #2a2a2a;
-
     --color-text: #ffffff;
     --color-text-muted: #c3c3c3;
-
     --color-border: rgba(255, 255, 255, 0.15);
 
-    /* Layout */
-    --content-width: 1440px;
+    --font-body: 'Karla', sans-serif;
+    --font-mono: 'Fira Code', monospace;
 
-    /* Spacing */
+    --content-width: 1440px;
+    --header-height: 98px;
+
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
     --space-md: 1rem;
@@ -21,17 +22,14 @@
     --space-2xl: 4rem;
     --space-3xl: 6rem;
 
-    /* Border Radius */
     --radius-sm: 0.5rem;
     --radius-md: 1rem;
     --radius-lg: 2rem;
     --radius-pill: 9999px;
 
-    /* Transition */
     --transition-fast: 150ms ease-in-out;
     --transition-base: 250ms ease-in-out;
 
-    /* Layer */
     --z-header: 100;
     --z-overlay: 500;
     --z-modal: 1000;

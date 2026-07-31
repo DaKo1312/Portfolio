@@ -1,26 +1,26 @@
 <header>
     <div class="container">
-        <div class="header-brand">
-            <div class="header-divider" aria-hidden="true"></div>
-            <div class="header-title">
-                <h1>Daniel Korbmacher</h1>
-                <span>Frontend Developer</span>
-            </div>
-        </div>
         <div class="header-navigation">
             <div class="language-switch">
-                <button type="button" class="active">DE</button>
-                <span>|</span>
-                <button type="button">EN</button>
+            @for (lang of languages; track lang) {
+                <button
+                type="button"
+                [attr.aria-pressed]="language() === lang"
+                [attr.aria-label]="lang === 'EN' ? 'Switch to English' : 'Auf Deutsch umschalten'"
+                (click)="selectLanguage(lang)"
+                >
+                {{ lang }}
+                </button>
+            }
             </div>
             <nav aria-label="Main navigation">
                 <a href="#about">About me</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Projects</a>
             </nav>
-            <a class="header-logo" href="#" aria-label="Back to top">
-                <img src="logo/logo.png" alt="Daniel Korbmacher logo" />
-            </a>
         </div>
+            <a class="header-logo" href="#" aria-label="Back to top">
+                <img src="logo/logo.png" alt="Daniel Korbmacher logo" width="132" height="48" />
+            </a>
     </div>
 </header>
