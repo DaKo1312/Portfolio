@@ -1,11 +1,13 @@
 :root {
     --color-primary: #3dcfb6;
     --color-primary-muted: rgba(61, 207, 182, 0.5);
+    --color-primary-soft: rgba(61, 207, 182, 0.1);
     --color-background: #1c1c1c;
     --color-background-deep: #08463b;
     --color-surface: #2a2a2a;
     --color-text: #ffffff;
     --color-text-muted: #c3c3c3;
+    --color-text-soft: rgba(255, 255, 255, 0.8);
     --color-border: rgba(255, 255, 255, 0.15);
 
     --font-body: 'Karla', sans-serif;
@@ -29,6 +31,7 @@
     --radius-sm: 0.5rem;
     --radius-md: 1rem;
     --radius-lg: 2rem;
+    --radius-xl: 30px;
     --radius-pill: 9999px;
 
     --transition-fast: 150ms ease-in-out;
