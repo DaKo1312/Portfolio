@@ -1,0 +1,51 @@
+<section class="hero" id="top">
+  <div class="container hero-content">
+    <p class="hero-role">{{ role }}</p>
+    <h1 class="hero-name">{{ name }}</h1>
+    <div class="hero-actions">
+      <a class="hero-button" href="#projects">Check my work</a>
+      <a class="hero-button" href="#contact">Contact me</a>
+    </div>
+  </div>
+
+  <div class="hero-lateral hero-lateral--left">
+    <a class="hero-scroll" href="#about" aria-label="Scroll down">
+      <span class="hero-scroll-dot" aria-hidden="true"></span>
+    </a>
+    <span class="hero-line hero-line--primary" aria-hidden="true"></span>
+  </div>
+
+  <div class="hero-lateral hero-lateral--right">
+    <div class="hero-mail">
+      <a [href]="'mailto:' + email">{{ email }}</a>
+    </div>
+    <div class="hero-socials">
+      @for (social of socials; track social.label) {
+        <a
+          [href]="social.href"
+          [attr.aria-label]="social.label"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+            <path [attr.d]="social.icon" />
+          </svg>
+        </a>
+      }
+    </div>
+    <span class="hero-line hero-line--light" aria-hidden="true"></span>
+  </div>
+
+  <div class="hero-marquee" aria-hidden="true">
+    <div class="hero-marquee-track">
+      @for (group of marqueeGroups; track group) {
+        <div class="hero-marquee-group">
+          @for (item of marqueeItems; track item) {
+            <span class="hero-marquee-dot"></span>
+            <span class="hero-marquee-item">{{ item }}</span>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</section>

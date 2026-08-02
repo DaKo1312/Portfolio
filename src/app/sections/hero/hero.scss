@@ -1,0 +1,280 @@
+@use '../../../styles/abstracts/mixins' as mixins;
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  overflow: hidden;
+  background: linear-gradient(
+    55.22deg,
+    var(--color-background) 36.26%,
+    var(--color-background-deep) 93.28%
+  );
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  padding-top: var(--header-height);
+  text-align: center;
+}
+
+.hero-role {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: clamp(1.25rem, 2.8vw, 2.5rem);
+  line-height: 1;
+}
+
+.hero-name {
+  margin-bottom: var(--space-lg);
+  font-family: var(--font-body);
+  font-size: clamp(2.75rem, 8.9vw, 8rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2xl);
+}
+
+.hero-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding-inline: var(--space-lg);
+  border: 1px solid var(--color-text);
+  border-radius: var(--radius-pill);
+  color: var(--color-text);
+  font-size: 1.125rem;
+  line-height: 1.2;
+  white-space: nowrap;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+
+  &:hover {
+    background-color: var(--color-text);
+    color: var(--color-background);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+  }
+}
+
+.hero-lateral {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+
+  &--left {
+    left: var(--page-inset);
+    height: 312px;
+  }
+
+  &--right {
+    right: var(--page-inset);
+    height: 480px;
+  }
+}
+
+.hero-line {
+  flex: 1;
+  width: 1px;
+
+  &--primary {
+    background-color: var(--color-primary);
+  }
+
+  &--light {
+    background-color: var(--color-text);
+  }
+}
+
+.hero-scroll {
+  position: relative;
+  flex-shrink: 0;
+  width: 30px;
+  height: 48px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-lg);
+
+  &:focus-visible {
+    outline: 2px solid var(--color-text);
+    outline-offset: 4px;
+  }
+}
+
+.hero-scroll-dot {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  width: 1px;
+  height: 12px;
+  background-color: var(--color-text);
+  animation: hero-scroll-hint 1.8s ease-in-out infinite;
+}
+
+.hero-mail {
+  position: relative;
+  flex-shrink: 0;
+  width: 22px;
+  height: 170px;
+
+  a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 1.125rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    transform: translate(-50%, -50%) rotate(-90deg);
+    transition: color var(--transition-fast);
+
+    &:hover {
+      color: var(--color-primary);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 4px;
+    }
+  }
+}
+
+.hero-socials {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: var(--space-sm);
+
+  a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      color: var(--color-primary);
+      transition: opacity var(--transition-fast);
+
+      &:hover {
+        opacity: 0.7;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--color-text);
+        outline-offset: 2px;
+      }
+    }
+
+  svg {
+      width: 26px;
+      height: 26px;
+    }
+}
+
+.hero-marquee {
+    position: absolute;
+    bottom: 78px;
+    left: 50%;
+    display: flex;
+    align-items: center;
+    width: 110vw;
+    height: 62px;
+    padding-block: 12px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(2.65px);
+    transform: translateX(-50%) rotate(-3deg);
+}
+
+.hero-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: hero-marquee 40s linear infinite;
+}
+
+.hero-marquee-group {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xl);
+    padding-right: var(--space-2xl);
+}
+
+.hero-marquee-item {
+    color: var(--color-primary);
+    font-size: 2rem;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.hero-marquee-dot {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+}
+
+@keyframes hero-marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+}
+
+@keyframes hero-scroll-hint {
+    0%,
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    50% {
+      transform: translateY(20px);
+      opacity: 0.3;
+    }
+}
+
+@include mixins.tablet {
+    .hero-lateral {
+      display: none;
+    }
+
+    .hero-actions {
+      gap: var(--space-lg);
+    }
+
+    .hero-marquee-item {
+      font-size: 1.25rem;
+    }
+
+    .hero-marquee {
+      height: 48px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-marquee-track,
+    .hero-scroll-dot {
+      animation: none;
+    }
+}

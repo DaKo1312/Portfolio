@@ -6,7 +6,7 @@ header {
     top: 0;
     z-index: var(--z-header);
     width: 100%;
-    height: var(--header-height);
+    min-height: var(--header-height);
     background: linear-gradient(0deg, rgba(0, 0, 0, 0) 13.56%, rgba(0, 0, 0, 0.6) 84.01%);
 }
 
@@ -14,8 +14,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
-    padding-inline: clamp(1rem, 6.67vw, 96px);
+    min-height: var(--header-height);
+    padding-inline: var(--gutter);
 }
 
 .header-logo {
@@ -24,8 +24,8 @@ header {
     img {
         display: block;
         width: auto;
-        height: 80px;
-        }
+        height: 72px;
+    }
 }
 
 .header-navigation {
@@ -44,35 +44,35 @@ header {
     border-radius: var(--radius-pill);
 
     button {
-    display: flex;
-    align-items: center;
-    height: 28px;
-    padding: 0 12px 0 8px;
-    background: none;
-    border: none;
-    border-radius: var(--radius-pill);
-    color: var(--color-primary-muted);
-    font-family: var(--font-mono);
-    font-size: 16px;
-    line-height: 120%;
-    cursor: pointer;
-    transition:
-        color var(--transition-fast),
-        background-color var(--transition-fast);
+        display: flex;
+        align-items: center;
+        height: 28px;
+        padding: 0 12px 0 8px;
+        background: none;
+        border: none;
+        border-radius: var(--radius-pill);
+        color: var(--color-primary-muted);
+        font-family: var(--font-mono);
+        font-size: 16px;
+        line-height: 120%;
+        cursor: pointer;
+        transition:
+            color var(--transition-fast),
+            background-color var(--transition-fast);
 
-    &[aria-pressed='true'] {
-        padding: 0 12px;
-        background-color: var(--color-primary);
-        color: var(--color-text);
-        font-weight: 700;
-    }
+            &[aria-pressed='true'] {
+            padding: 0 12px;
+            background-color: var(--color-primary);
+            color: var(--color-text);
+            font-weight: 700;
+            }
 
-    &:focus-visible {
-        outline: 2px solid var(--color-text);
-        outline-offset: 2px;
+            &:focus-visible {
+            outline: 2px solid var(--color-text);
+            outline-offset: 2px;
+            }
+        }
     }
-    }
-}
 
 nav {
     display: flex;
@@ -90,30 +90,30 @@ nav {
         transition: color var(--transition-fast);
 
         &:hover {
-            color: var(--color-primary);
+        color: var(--color-primary);
         }
 
-    &:focus-visible {
+        &:focus-visible {
         outline: 2px solid var(--color-primary);
         outline-offset: 4px;
-    }
+        }
     }
 }
 
 @include mixins.tablet {
     .header-navigation {
-    gap: var(--space-md);
+        gap: var(--space-md);
     }
 
     nav {
-    gap: var(--space-md);
+        gap: var(--space-md);
 
-    a {
+        a {
         font-size: 16px;
-    }
+        }
     }
 
     .header-logo img {
-    height: 36px;
+        height: 36px;
     }
 }
