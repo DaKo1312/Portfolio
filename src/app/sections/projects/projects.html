@@ -1,0 +1,25 @@
+<section class="section projects" id="projects">
+    <div class="section__inner">
+        <div class="projects__content">
+        <div class="projects__heading">
+            <p class="section__eyebrow">Portfolio</p>
+            <h2 class="section__title">Featured Projects</h2>
+        </div>
+        <p class="projects__lead">
+            Explore a selection of my work here - Interact with projects to see my skills in action.
+        </p>
+        <ul class="projects__list">
+            @for (project of projects(); track project.name) {
+            <li class="projects__item">
+                <h3 class="projects__name">{{ project.name }}</h3>
+                <ul class="projects__stack">
+                @for (technology of project.stack; track technology) {
+                    <li class="projects__technology">{{ technology }}</li>
+                }
+                </ul>
+            </li>
+            }
+        </ul>
+        </div>
+    </div>
+</section>
