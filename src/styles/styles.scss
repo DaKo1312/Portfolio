@@ -1,12 +1,6 @@
-/* ==========================================================================
-    Portfolio - Global Styles
-   ========================================================================== */
-
-/* Abstracts */
 @use './abstracts/variables';
 @use './abstracts/mixins';
 
-/* Base */
 @use './base/reset';
 @use './base/layout';
 @use './base/base';

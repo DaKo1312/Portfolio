@@ -12,6 +12,7 @@ interface Project {
     styleUrl: './projects.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
+
 export class Projects {
     protected readonly projects = signal<readonly Project[]>([
         { name: 'Join', stack: ['Angular', 'TypeScript', 'HTML', 'CSS', 'Firebase'] },
