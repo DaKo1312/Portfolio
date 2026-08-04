@@ -52,22 +52,37 @@ describe('References', () => {
     expect(element.querySelector('section')?.id).toBe('references');
   });
 
-  it('should render every reference plus one clone on each side', () => {
+  it('should repeat every reference three times so both neighbours always exist', () => {
     const slides = element.querySelectorAll('.references__slide');
     const authors = Array.from(slides).map((slide) =>
       slide.querySelector('.reference__author')?.textContent?.trim(),
     );
 
-    expect(slides.length).toBe(5);
+    expect(slides.length).toBe(9);
     expect(element.querySelectorAll('.references__dot').length).toBe(3);
-    expect(authors[0]).toBe('A. Fischer - Team Partner');
-    expect(authors[1]).toBe('T. Schulz - Frontend Developer');
-    expect(authors[4]).toBe('T. Schulz - Frontend Developer');
+    expect(authors[0]).toBe('T. Schulz - Frontend Developer');
+    expect(authors[3]).toBe('T. Schulz - Frontend Developer');
+    expect(authors[8]).toBe('A. Fischer - Team Partner');
   });
 
-  it('should start on the first reference', () => {
-    expect(activeSlide()).toBe(1);
+  it('should start on the first reference of the middle block', () => {
+    expect(activeSlide()).toBe(3);
     expect(activeDot()).toBe(0);
+  });
+
+  it('should always keep a slide on both sides of the active one', () => {
+    const [, next] = arrows();
+    const total = element.querySelectorAll('.references__slide').length;
+
+    for (let click = 0; click < 6; click += 1) {
+      const current = activeSlide();
+
+      expect(current).toBeGreaterThan(0);
+      expect(current).toBeLessThan(total - 1);
+      next.click();
+      fixture.detectChanges();
+      settleTrack();
+    }
   });
 
   it('should advance to the next reference', () => {
@@ -75,33 +90,33 @@ describe('References', () => {
 
     next.click();
     fixture.detectChanges();
-    expect(activeSlide()).toBe(2);
+    expect(activeSlide()).toBe(4);
     expect(activeDot()).toBe(1);
   });
 
-  it('should run through the trailing clone and settle back on the first reference', () => {
+  it('should leave the middle block forwards and settle back on the first reference', () => {
     const [, next] = arrows();
 
     next.click();
     next.click();
     next.click();
     fixture.detectChanges();
-    expect(activeSlide()).toBe(4);
+    expect(activeSlide()).toBe(6);
     expect(activeDot()).toBe(0);
     settleTrack();
-    expect(activeSlide()).toBe(1);
+    expect(activeSlide()).toBe(3);
     expect(activeDot()).toBe(0);
   });
 
-  it('should run through the leading clone and settle back on the last reference', () => {
+  it('should leave the middle block backwards and settle back on the last reference', () => {
     const [previous] = arrows();
 
     previous.click();
     fixture.detectChanges();
-    expect(activeSlide()).toBe(0);
+    expect(activeSlide()).toBe(2);
     expect(activeDot()).toBe(2);
     settleTrack();
-    expect(activeSlide()).toBe(3);
+    expect(activeSlide()).toBe(5);
     expect(activeDot()).toBe(2);
   });
 
@@ -121,7 +136,7 @@ describe('References', () => {
 
     dots[2].click();
     fixture.detectChanges();
-    expect(activeSlide()).toBe(3);
+    expect(activeSlide()).toBe(5);
     expect(dots[2].getAttribute('aria-current')).toBe('true');
   });
 
@@ -129,9 +144,9 @@ describe('References', () => {
     const track = element.querySelector<HTMLElement>('.references__track');
     const [, next] = arrows();
 
-    expect(track?.style.transform).toContain('1 *');
+    expect(track?.style.transform).toContain('3 *');
     next.click();
     fixture.detectChanges();
-    expect(track?.style.transform).toContain('2 *');
+    expect(track?.style.transform).toContain('4 *');
   });
 });

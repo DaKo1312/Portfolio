@@ -1,5 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 
+const ARROW_BACK_ICON =
+  'M11.29 5.29 4.59 12l6.7 6.71 1.42-1.42L8.41 13H20v-2H8.41l4.3-4.29-1.42-1.42Z';
+
+const ARROW_FORWARD_ICON =
+  'M12.71 5.29 19.41 12l-6.7 6.71-1.42-1.42L15.59 13H4v-2h11.59l-4.3-4.29 1.42-1.42Z';
+
 export interface Reference {
   readonly quote: string;
   readonly author: string;
@@ -14,6 +20,9 @@ export interface Reference {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class References {
+  protected readonly backIcon = ARROW_BACK_ICON;
+  protected readonly forwardIcon = ARROW_FORWARD_ICON;
+
   protected readonly references = signal<readonly Reference[]>([
     {
       quote: 'Our project benefited enormously from Daniel efficient way of working.',
@@ -40,16 +49,12 @@ export class References {
     if (items.length < 2) {
       return items;
     }
-    return [items[items.length - 1], ...items, items[0]];
+    return [...items, ...items, ...items];
   });
-  
-  protected readonly position = signal(1);
-  protected readonly animated = signal(true);
-  protected readonly activeIndex = computed(() => {
-    const count = this.references().length;
 
-    return (this.position() - 1 + count) % count;
-  });
+  protected readonly position = signal(this.references().length);
+  protected readonly animated = signal(true);
+  protected readonly activeIndex = computed(() => this.position() % this.references().length);
 
   protected readonly trackTransform = computed(
     () => `translateX(calc(${this.position()} * (var(--card-width) + var(--card-gap)) * -1))`,
@@ -66,7 +71,7 @@ export class References {
       return;
     }
     this.animated.set(true);
-    this.position.set(index + 1);
+    this.position.set(this.references().length + index);
   }
 
   protected onTrackSettled(event: TransitionEvent): void {
@@ -79,28 +84,16 @@ export class References {
     const count = this.references().length;
     const current = this.position();
 
-    if (current !== 0 && current !== count + 1) {
+    if (current >= count && current < count * 2) {
       return;
     }
     this.animated.set(false);
-    this.position.set(current === 0 ? count : 1);
+    this.position.set(count + (current % count));
     requestAnimationFrame(() => this.animated.set(true));
   }
 
   private step(offset: number): void {
-    const count = this.references().length;
-
     this.animated.set(true);
-    this.position.update((current) => {
-      const next = current + offset;
-
-      if (next < 0) {
-        return count;
-      }
-      if (next > count + 1) {
-        return 1;
-      }
-      return next;
-    });
+    this.position.update((current) => current + offset);
   }
 }

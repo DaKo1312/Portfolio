@@ -2,69 +2,64 @@
   <div class="references__inner">
     <h2 class="references__title" id="references-title">What my colleagues say about me</h2>
 
-    <div class="references__carousel">
-      <div class="references__viewport">
-        <ul
-          class="references__track"
-          [class.references__track--animated]="animated()"
-          [style.transform]="trackTransform()"
-          (transitionend)="onTrackSettled($event)"
-        >
-          @for (slide of slides(); track $index; let index = $index) {
-            <li class="references__slide" [class.references__slide--active]="index === position()">
-              <figure class="reference">
-                <blockquote class="reference__quote">{{ slide.quote }}</blockquote>
-                <figcaption class="reference__meta">
-                  <span class="reference__rule" aria-hidden="true"></span>
-                  <span class="reference__author">{{ slide.author }} - {{ slide.role }}</span>
-                </figcaption>
-              </figure>
-            </li>
-          }
-        </ul>
-        <span class="references__mark" aria-hidden="true">&ldquo;</span>
-        <span class="references__fade" aria-hidden="true"></span>
+    <div class="references__viewport">
+      <ul
+        class="references__track"
+        [class.references__track--animated]="animated()"
+        [style.transform]="trackTransform()"
+        (transitionend)="onTrackSettled($event)"
+      >
+        @for (slide of slides(); track $index; let index = $index) {
+          <li class="references__slide" [class.references__slide--active]="index === position()">
+            <figure class="reference">
+              <blockquote class="reference__quote">{{ slide.quote }}</blockquote>
+              <figcaption class="reference__meta">
+                <span class="reference__rule" aria-hidden="true"></span>
+                <span class="reference__author">{{ slide.author }} - {{ slide.role }}</span>
+              </figcaption>
+            </figure>
+          </li>
+        }
+      </ul>
+      <span class="references__mark" aria-hidden="true">&ldquo;</span>
+      <span class="references__fade" aria-hidden="true"></span>
+    </div>
+
+    <div class="references__controls">
+      <button
+        class="references__arrow"
+        type="button"
+        aria-label="Show previous reference"
+        (click)="previous()"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path [attr.d]="backIcon" />
+        </svg>
+      </button>
+
+      <div class="references__dots">
+        @for (reference of references(); track reference.author; let index = $index) {
+          <button
+            class="references__dot"
+            type="button"
+            [class.references__dot--active]="index === activeIndex()"
+            [attr.aria-current]="index === activeIndex() ? 'true' : null"
+            [attr.aria-label]="'Show reference ' + (index + 1)"
+            (click)="select(index)"
+          ></button>
+        }
       </div>
-      <div class="references__controls">
-        <button
-          class="references__arrow"
-          type="button"
-          aria-label="Show previous reference"
-          (click)="previous()"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path
-              d="M11.29 5.29 4.59 12l6.7 6.71 1.42-1.42L8.41 13H20v-2H8.41l4.3-4.29-1.42-1.42Z"
-            />
-          </svg>
-        </button>
-        <ul class="references__dots">
-          @for (reference of references(); track reference.author; let index = $index) {
-            <li>
-              <button
-                class="references__dot"
-                type="button"
-                [class.references__dot--active]="index === activeIndex()"
-                [attr.aria-current]="index === activeIndex() ? 'true' : null"
-                [attr.aria-label]="'Show reference ' + (index + 1)"
-                (click)="select(index)"
-              ></button>
-            </li>
-          }
-        </ul>
-        <button
-          class="references__arrow"
-          type="button"
-          aria-label="Show next reference"
-          (click)="next()"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path
-              d="M12.71 5.29 19.41 12l-6.7 6.71-1.42-1.42L15.59 13H4v-2h11.59l-4.3-4.29 1.42-1.42Z"
-            />
-          </svg>
-        </button>
-      </div>
+
+      <button
+        class="references__arrow"
+        type="button"
+        aria-label="Show next reference"
+        (click)="next()"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path [attr.d]="forwardIcon" />
+        </svg>
+      </button>
     </div>
   </div>
 </section>

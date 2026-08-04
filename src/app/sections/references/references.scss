@@ -31,14 +31,6 @@
   color: var(--color-primary);
 }
 
-.references__carousel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: clamp(1.5rem, 3.3vw, 48px);
-  width: 100%;
-}
-
 .references__viewport {
   position: relative;
   width: 100%;
@@ -47,7 +39,7 @@
 
 .references__track {
   display: flex;
-  align-items: center;
+  align-items: stretch;
   gap: var(--card-gap);
   margin: 0;
   padding: 0;
@@ -177,6 +169,16 @@
   &:focus-visible {
     color: var(--color-primary);
   }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+    border-radius: 50%;
+  }
 }
 
 .references__dots {
@@ -208,6 +210,15 @@
   &:hover,
   &:focus-visible {
     background: var(--color-primary-muted);
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 6px;
   }
 }
 
