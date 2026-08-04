@@ -1,0 +1,113 @@
+<section id="contact" class="contact">
+  <div class="contact__inner">
+    <div class="contact__intro">
+      <div class="contact__lead">
+        <p class="contact__eyebrow">Contact me</p>
+        <h2 class="contact__title">Let's work together</h2>
+      </div>
+
+      <div class="contact__pitch">
+        <h3 class="contact__pitch-title">Got a problem to solve?</h3>
+        <p class="contact__pitch-text">
+          Encourage people to contact you and describe what role you are interested in. Show that
+          you will add value to their projects through your work. Need a Frontend developer? Let's
+          talk!
+        </p>
+      </div>
+    </div>
+
+    <form class="contact__form" novalidate (submit)="submit($event)">
+      <div class="contact__fields">
+        <div class="contact__field" [class.contact__field--error]="nameError()">
+          <label class="contact__label" for="contact-name">What's your name?</label>
+          <input
+            #nameRef
+            id="contact-name"
+            class="contact__input"
+            type="text"
+            autocomplete="name"
+            [placeholder]="namePlaceholder()"
+            [value]="name()"
+            [attr.aria-invalid]="nameError()"
+            (input)="name.set(nameRef.value)"
+            (blur)="nameTouched.set(true)"
+          />
+        </div>
+
+        <div class="contact__field" [class.contact__field--error]="emailError()">
+          <label class="contact__label" for="contact-email">What's your email?</label>
+          <input
+            #emailRef
+            id="contact-email"
+            class="contact__input"
+            type="email"
+            autocomplete="email"
+            [placeholder]="emailPlaceholder()"
+            [value]="email()"
+            [attr.aria-invalid]="emailError()"
+            (input)="email.set(emailRef.value)"
+            (blur)="emailTouched.set(true)"
+          />
+          @if (emailHint()) {
+            <p class="contact__hint">{{ emailHint() }}</p>
+          }
+        </div>
+
+        <div class="contact__field" [class.contact__field--error]="messageError()">
+          <label class="contact__label" for="contact-message">How can I help you?</label>
+          <textarea
+            #messageRef
+            id="contact-message"
+            class="contact__input contact__input--area"
+            rows="1"
+            [placeholder]="messagePlaceholder()"
+            [value]="message()"
+            [attr.aria-invalid]="messageError()"
+            (input)="message.set(messageRef.value)"
+            (blur)="messageTouched.set(true)"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="contact__consent">
+        <div class="contact__consent-row">
+          <label class="contact__checkbox">
+            <input
+              #privacyRef
+              type="checkbox"
+              [checked]="accepted()"
+              [attr.aria-invalid]="privacyError()"
+              (change)="accepted.set(privacyRef.checked)"
+            />
+            <span class="contact__checkbox-box" aria-hidden="true"></span>
+            <span class="contact__checkbox-text">
+              I've read the <a class="contact__link" href="#privacy-policy">privacy policy</a> and
+              agree to the processing of my data as outlined.
+            </span>
+          </label>
+
+          @if (privacyError()) {
+            <p class="contact__hint">Please accept the privacy policy.</p>
+          }
+        </div>
+
+        <button class="contact__submit" type="submit" [disabled]="status() === 'sending'">
+          {{ status() === 'sending' ? 'Sending...' : 'Send' }}
+        </button>
+
+        <p
+          class="contact__status"
+          [class.contact__status--error]="status() === 'error'"
+          role="status"
+          aria-live="polite"
+        >
+          @if (status() === 'sent') {
+            Thanks — your message is on its way.
+          } @else if (status() === 'error') {
+            Something went wrong. Please try again in a moment.
+          }
+        </p>
+      </div>
+    </form>
+  </div>
+</section>
