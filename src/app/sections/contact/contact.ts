@@ -1,24 +1,11 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
 
-/** Web3Forms-Endpoint. Jeder JSON-Form-Dienst funktioniert mit gleicher Payload-Struktur. */
-const FORM_ENDPOINT = 'https://api.web3forms.com/submit';
-
-/**
- * Kostenlos per E-Mail unter https://web3forms.com anfordern und hier eintragen.
- * Solange der Platzhalter steht, wird nicht real gesendet.
- */
+const FORM_ENDPOINT = 'https://api.web3forms.com/submit'
 const FORM_ACCESS_KEY = 'YOUR_ACCESS_KEY';
-
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-/** Texte 1:1 aus der Vorlage, inklusive des deutschen "Hoppla!". */
 const NAME_ERROR = 'Oops! it seems your name is missing';
 const EMAIL_ERROR = 'Hoppla! your email is required';
 const MESSAGE_ERROR = 'What do you need to develop?';
-
-const NAME_PLACEHOLDER = 'Your name goes here';
-const EMAIL_PLACEHOLDER = 'youremail@email.com';
-const MESSAGE_PLACEHOLDER = 'Hello Daniel, I am interested in...';
 
 type SubmitStatus = 'idle' | 'sending' | 'sent' | 'error';
 
@@ -34,38 +21,31 @@ export class Contact {
   protected readonly email = signal('');
   protected readonly message = signal('');
   protected readonly accepted = signal(false);
-
-  /** Fehler erscheinen erst, nachdem ein Feld verlassen oder abgesendet wurde. */
-  protected readonly nameTouched = signal(false);
-  protected readonly emailTouched = signal(false);
-  protected readonly messageTouched = signal(false);
+  protected readonly nameShown = signal(false);
+  protected readonly emailShown = signal(false);
+  protected readonly messageShown = signal(false);
   protected readonly submitted = signal(false);
-
   protected readonly status = signal<SubmitStatus>('idle');
-
   protected readonly nameError = computed(
-    () => (this.nameTouched() || this.submitted()) && this.name().trim().length === 0,
+    () => (this.nameShown() || this.submitted()) && this.name().trim().length === 0,
   );
   protected readonly emailError = computed(
-    () => (this.emailTouched() || this.submitted()) && !EMAIL_PATTERN.test(this.email().trim()),
+    () => (this.emailShown() || this.submitted()) && !EMAIL_PATTERN.test(this.email().trim()),
   );
   protected readonly messageError = computed(
-    () => (this.messageTouched() || this.submitted()) && this.message().trim().length === 0,
+    () => (this.messageShown() || this.submitted()) && this.message().trim().length === 0,
   );
   protected readonly privacyError = computed(() => this.submitted() && !this.accepted());
-
-  /** Fehlertext ersetzt den Placeholder — so zeigt es die Vorlage. */
-  protected readonly namePlaceholder = computed(() =>
-    this.nameError() ? NAME_ERROR : NAME_PLACEHOLDER,
+  protected readonly nameMessage = computed(() =>
+    this.nameError() && this.name().length === 0 ? NAME_ERROR : '',
   );
-  protected readonly emailPlaceholder = computed(() =>
-    this.emailError() ? EMAIL_ERROR : EMAIL_PLACEHOLDER,
+  protected readonly emailMessage = computed(() =>
+    this.emailError() && this.email().length === 0 ? EMAIL_ERROR : '',
   );
-  protected readonly messagePlaceholder = computed(() =>
-    this.messageError() ? MESSAGE_ERROR : MESSAGE_PLACEHOLDER,
+  protected readonly messageMessage = computed(() =>
+    this.messageError() && this.message().length === 0 ? MESSAGE_ERROR : '',
   );
 
-  /** Greift nur, wenn trotz Eingabe ungueltig ist — dann verdeckt der Wert den Placeholder. */
   protected readonly emailHint = computed(() =>
     this.emailError() && this.email().length > 0 ? EMAIL_ERROR : '',
   );
@@ -118,9 +98,9 @@ export class Contact {
     this.email.set('');
     this.message.set('');
     this.accepted.set(false);
-    this.nameTouched.set(false);
-    this.emailTouched.set(false);
-    this.messageTouched.set(false);
+    this.nameShown.set(false);
+    this.emailShown.set(false);
+    this.messageShown.set(false);
     this.submitted.set(false);
   }
 }

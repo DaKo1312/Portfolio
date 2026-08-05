@@ -1,7 +1,5 @@
 :host {
   display: block;
-  /* Aus dem Vorlagen-Screenshot gemessen. Kein Fehler-Token im Projekt vorhanden —
-     lokal gehalten, analog --card-surface-active in references.scss. */
   --contact-error: #c36868;
 }
 
@@ -18,26 +16,28 @@
   align-items: start;
 }
 
-/* --- Linke Spalte --- */
-
-.contact__intro {
+.contact__intro,
+.contact__lead,
+.contact__pitch,
+.contact__form,
+.contact__fields,
+.contact__field,
+.contact__consent,
+.contact__consent-row {
   display: flex;
   flex-direction: column;
+}
+
+.contact__intro {
   gap: clamp(2rem, 4vw, 2.5rem);
 }
 
 .contact__lead {
-  display: flex;
-  flex-direction: column;
   gap: clamp(1rem, 1.5vw, 1.25rem);
 }
 
 .contact__eyebrow {
-  font-family: var(--font-body);
   font-weight: 500;
-  font-size: clamp(1.25rem, 1.7vw, 1.5rem);
-  line-height: 1.2;
-  color: var(--color-primary);
 }
 
 .contact__title {
@@ -50,55 +50,41 @@
 }
 
 .contact__pitch {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
 }
 
 .contact__pitch-title {
   font-family: var(--font-mono);
   font-weight: 700;
-  font-size: clamp(1.25rem, 1.7vw, 1.5rem);
-  line-height: 1.2;
-  color: var(--color-primary);
 }
 
 .contact__pitch-text {
-  font-family: var(--font-body);
   font-weight: 400;
   font-size: 1rem;
   line-height: 1.5;
   color: var(--color-text);
 }
 
-/* --- Rechte Spalte: Formular --- */
-
 .contact__form {
-  display: flex;
-  flex-direction: column;
   gap: clamp(2rem, 4vw, 2.5rem);
   border-top: 1px solid var(--color-primary);
 }
 
 .contact__fields {
-  display: flex;
-  flex-direction: column;
 }
 
 .contact__field {
-  display: flex;
-  flex-direction: column;
   gap: 1rem;
   padding: clamp(1.25rem, 3vw, 2rem);
   border-bottom: 1px solid var(--color-primary-muted);
   transition: border-color var(--transition-fast);
+  cursor: pointer;
 }
 
 .contact__field:focus-within {
   border-bottom-color: var(--color-primary);
 }
 
-/* Vorlage: im Fehlerfall wird die Linie voll tuerkis, nicht rot. */
 .contact__field--error {
   border-bottom-color: var(--color-primary);
 }
@@ -106,20 +92,55 @@
 .contact__label {
   font-family: var(--font-mono);
   font-weight: 500;
+}
+
+.contact__eyebrow,
+.contact__pitch-title,
+.contact__label {
   font-size: clamp(1.25rem, 1.7vw, 1.5rem);
   line-height: 1.2;
   color: var(--color-primary);
 }
 
-.contact__input {
+.contact__control {
+  position: relative;
+  display: block;
   width: 100%;
-  padding: 0;
-  border: none;
-  background: transparent;
+}
+
+.contact__eyebrow,
+.contact__pitch-text,
+.contact__checkbox,
+.contact__hint,
+.contact__submit,
+.contact__status,
+.contact__input,
+.contact__message {
   font-family: var(--font-body);
+}
+
+.contact__input,
+.contact__message {
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.2;
+}
+
+.contact__message {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  pointer-events: none;
+  color: var(--contact-error);
+}
+
+.contact__input {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  padding: 0;
+  border: none;
+  background: transparent;
   color: var(--color-text);
 }
 
@@ -127,10 +148,8 @@
   color: var(--color-text-soft);
 }
 
-/* Der Fehlertext ersetzt den Placeholder und sitzt damit exakt auf dessen Position. */
 .contact__field--error .contact__input::placeholder {
-  color: var(--contact-error);
-  opacity: 1;
+  color: transparent;
 }
 
 .contact__input:focus-visible {
@@ -138,22 +157,17 @@
 }
 
 .contact__input--area {
-  min-height: 1.5rem;
+  display: block;
+  min-height: 1.35rem;
   resize: vertical;
 }
 
-/* --- Einwilligung & Absenden --- */
-
 .contact__consent {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 1rem;
 }
 
 .contact__consent-row {
-  display: flex;
-  flex-direction: column;
   gap: 0.5rem;
   align-self: stretch;
 }
@@ -163,7 +177,6 @@
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
-  font-family: var(--font-body);
   font-weight: 400;
   font-size: 0.9375rem;
   line-height: 1.2;
@@ -206,11 +219,6 @@
   opacity: 1;
 }
 
-.contact__checkbox input:focus-visible + .contact__checkbox-box {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
 .contact__link {
   font-family: var(--font-mono);
   font-weight: 400;
@@ -223,13 +231,7 @@
   text-decoration: underline;
 }
 
-.contact__link:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
 .contact__hint {
-  font-family: var(--font-body);
   font-weight: 400;
   font-size: 0.875rem;
   line-height: 1.2;
@@ -244,15 +246,11 @@
   border-radius: var(--radius-pill);
   background: transparent;
   cursor: pointer;
-  font-family: var(--font-body);
   font-weight: 400;
   font-size: 1.125rem;
   line-height: 1.2;
   color: var(--color-text-soft);
-  transition:
-    color var(--transition-base),
-    background-color var(--transition-base),
-    border-color var(--transition-base);
+  transition: all var(--transition-base);
 }
 
 .contact__submit:hover:not(:disabled) {
@@ -261,20 +259,21 @@
   border-color: var(--color-primary);
 }
 
-.contact__submit:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
-}
-
 .contact__submit:disabled {
   cursor: default;
   opacity: 0.6;
 }
 
+.contact__checkbox input:focus-visible + .contact__checkbox-box,
+.contact__link:focus-visible,
+.contact__submit:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 .contact__status {
   align-self: center;
   min-height: 1.5rem;
-  font-family: var(--font-body);
   font-size: 0.9375rem;
   line-height: 1.2;
   text-align: center;

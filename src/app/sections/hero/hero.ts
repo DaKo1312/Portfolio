@@ -31,7 +31,6 @@ export class Hero {
     { label: 'LinkedIn', href: 'https://linkedin.com/', icon: LINKEDIN_ICON },
   ];
 
-  /** Eine Durchlaufgruppe. Das Template rendert sie zweimal, damit die Schleife nahtlos wirkt. */
   protected readonly marqueeItems: readonly string[] = [
     'Available for remote work',
     'Frontend Developer',

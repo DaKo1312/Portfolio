@@ -18,54 +18,81 @@
 
     <form class="contact__form" novalidate (submit)="submit($event)">
       <div class="contact__fields">
-        <div class="contact__field" [class.contact__field--error]="nameError()">
-          <label class="contact__label" for="contact-name">What's your name?</label>
-          <input
-            #nameRef
-            id="contact-name"
-            class="contact__input"
-            type="text"
-            autocomplete="name"
-            [placeholder]="namePlaceholder()"
-            [value]="name()"
-            [attr.aria-invalid]="nameError()"
-            (input)="name.set(nameRef.value)"
-            (blur)="nameTouched.set(true)"
-          />
+        <div
+          class="contact__field"
+          [class.contact__field--error]="nameError()"
+          (click)="nameShown.set(!nameShown()); nameRef.focus()"
+        >
+          <span class="contact__label" id="contact-name-label">What's your name?</span>
+          <span class="contact__control">
+            <input
+              #nameRef
+              id="contact-name"
+              aria-labelledby="contact-name-label"
+              class="contact__input"
+              type="text"
+              autocomplete="name"
+              placeholder="Your name goes here"
+              [value]="name()"
+              [attr.aria-invalid]="nameError()"
+              (input)="name.set(nameRef.value)"
+            />
+            @if (nameMessage()) {
+              <span class="contact__message">{{ nameMessage() }}</span>
+            }
+          </span>
         </div>
 
-        <div class="contact__field" [class.contact__field--error]="emailError()">
-          <label class="contact__label" for="contact-email">What's your email?</label>
-          <input
-            #emailRef
-            id="contact-email"
-            class="contact__input"
-            type="email"
-            autocomplete="email"
-            [placeholder]="emailPlaceholder()"
-            [value]="email()"
-            [attr.aria-invalid]="emailError()"
-            (input)="email.set(emailRef.value)"
-            (blur)="emailTouched.set(true)"
-          />
+        <div
+          class="contact__field"
+          [class.contact__field--error]="emailError()"
+          (click)="emailShown.set(!emailShown()); emailRef.focus()"
+        >
+          <span class="contact__label" id="contact-email-label">What's your email?</span>
+          <span class="contact__control">
+            <input
+              #emailRef
+              id="contact-email"
+              aria-labelledby="contact-email-label"
+              class="contact__input"
+              type="email"
+              autocomplete="email"
+              placeholder="youremail@email.com"
+              [value]="email()"
+              [attr.aria-invalid]="emailError()"
+              (input)="email.set(emailRef.value)"
+            />
+            @if (emailMessage()) {
+              <span class="contact__message">{{ emailMessage() }}</span>
+            }
+          </span>
           @if (emailHint()) {
-            <p class="contact__hint">{{ emailHint() }}</p>
+            <span class="contact__hint">{{ emailHint() }}</span>
           }
         </div>
 
-        <div class="contact__field" [class.contact__field--error]="messageError()">
-          <label class="contact__label" for="contact-message">How can I help you?</label>
-          <textarea
-            #messageRef
-            id="contact-message"
-            class="contact__input contact__input--area"
-            rows="1"
-            [placeholder]="messagePlaceholder()"
-            [value]="message()"
-            [attr.aria-invalid]="messageError()"
-            (input)="message.set(messageRef.value)"
-            (blur)="messageTouched.set(true)"
-          ></textarea>
+        <div
+          class="contact__field"
+          [class.contact__field--error]="messageError()"
+          (click)="messageShown.set(!messageShown()); messageRef.focus()"
+        >
+          <span class="contact__label" id="contact-message-label">How can I help you?</span>
+          <span class="contact__control">
+            <textarea
+              #messageRef
+              id="contact-message"
+              aria-labelledby="contact-message-label"
+              class="contact__input contact__input--area"
+              rows="1"
+              placeholder="Hello Daniel, I am interested in..."
+              [value]="message()"
+              [attr.aria-invalid]="messageError()"
+              (input)="message.set(messageRef.value)"
+            ></textarea>
+            @if (messageMessage()) {
+              <span class="contact__message">{{ messageMessage() }}</span>
+            }
+          </span>
         </div>
       </div>
 
