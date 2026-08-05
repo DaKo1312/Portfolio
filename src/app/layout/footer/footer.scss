@@ -1,7 +1,126 @@
-.footer-logo-default {
-    width: 200px;
+:host {
+  display: block;
 }
 
-footer {
+.footer {
+  padding-block: clamp(3rem, 6vw, 5rem) 64px;
+}
 
+.footer__inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  align-items: center;
+  padding-inline: var(--gutter);
+}
+
+.footer__brand,
+.footer__info,
+.footer__nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__brand {
+  justify-content: space-between;
+  gap: var(--space-xl);
+  min-height: 126px;
+}
+
+.footer__logo {
+  position: relative;
+  display: flex;
+
+  img {
+    display: block;
+    width: auto;
+    height: 48px;
+    transition: opacity var(--transition-fast);
+  }
+
+  .footer__logo-hover {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    opacity: 0;
+  }
+
+  &:hover,
+  &:focus-visible {
+    .footer__logo-default {
+      opacity: 0;
+    }
+
+    .footer__logo-hover {
+      opacity: 1;
+    }
+  }
+}
+
+.footer__logo:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+.footer__info {
+  gap: var(--space-sm);
+}
+
+.footer__info p,
+.footer__link {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 120%;
+  color: var(--color-text);
+}
+
+.footer__copyright {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 120%;
+  text-align: center;
+  color: var(--color-primary);
+}
+
+.footer__nav {
+  align-items: flex-start;
+  gap: var(--space-sm);
+  justify-self: end;
+  align-self: end;
+  padding-inline-start: 36.5px;
+}
+
+.footer__link {
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.footer__link:hover {
+  color: var(--color-primary);
+}
+
+.footer__link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 4px;
+}
+
+.footer__marker {
+  position: absolute;
+  inset-block-start: 5.5px;
+  inset-inline-end: calc(100% + 8px);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.footer__link:hover .footer__marker,
+.footer__link:focus-visible .footer__marker {
+  opacity: 1;
 }

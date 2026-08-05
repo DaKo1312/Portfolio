@@ -1,17 +1,44 @@
-<footer>
-    <div class="container">
-        <div class="footer-branding">
-            <a class="footer-logo" href="#" aria-label="Back to top">
-                <img class="footer-logo-default" src="logo/logo.png" alt="Daniel Korbmacher logo"/>
-            </a>
-            <p>Web Developer</p>
-            <p>Troisdorf Germany</p>
-        </div>
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a class="footer__logo" href="#" aria-label="Back to top">
+        <img
+          class="footer__logo-default"
+          src="logo/logo.png"
+          alt="Daniel Korbmacher logo"
+          width="814"
+          height="214"
+        />
+        <img
+          class="footer__logo-hover"
+          src="logo/logo1.png"
+          alt=""
+          aria-hidden="true"
+          width="814"
+          height="214"
+        />
+      </a>
 
-        <div class="footer-copyright">
-            <p>©Daniel Korbmacher 2026</p>
-        </div>
-
-        
+      <div class="footer__info">
+        <p>Web Developer</p>
+        <p>Troisdorf Germany</p>
+      </div>
     </div>
+
+    <p class="footer__copyright">&copy;Daniel Korbmacher 2026</p>
+
+    <nav class="footer__nav" aria-label="Footer navigation">
+      @for (link of links; track link.label) {
+        <a
+          class="footer__link"
+          [href]="link.href"
+          [attr.target]="link.external ? '_blank' : null"
+          [attr.rel]="link.external ? 'noopener noreferrer' : null"
+        >
+          <span class="footer__marker" aria-hidden="true"></span>
+          {{ link.label }}
+        </a>
+      }
+    </nav>
+  </div>
 </footer>
