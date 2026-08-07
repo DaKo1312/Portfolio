@@ -1,21 +1,64 @@
 @use '../../../styles/abstracts/mixins' as mixins;
 
 header {
-    position: absolute;
+    position: fixed;
     inset-inline: 0;
     top: 0;
     z-index: var(--z-header);
     width: 100%;
     min-height: var(--header-height);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 13.56%, rgba(0, 0, 0, 0.6) 84.01%);
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.42) 0%,
+        rgba(0, 0, 0, 0.18) 55%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    mask-image: linear-gradient(180deg, #000 0%, #000 45%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 45%, transparent 100%);
+    pointer-events: none;
 }
 
 .container {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
     min-height: var(--header-height);
     padding-inline: var(--gutter);
+}
+
+.header-burger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 34px;
+    height: 22px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        border-radius: 1px;
+        background: var(--color-primary);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-primary);
+        outline-offset: 6px;
+    }
 }
 
 .header-logo {
@@ -142,19 +185,64 @@ nav {
 }
 
 @include mixins.tablet {
+    .container {
+        flex-direction: row-reverse;
+    }
+
+    .header-burger {
+        display: flex;
+    }
+
     .header-navigation {
-        gap: var(--space-md);
+        position: absolute;
+        inset-block-start: calc(100% - 20px);
+        inset-inline-end: var(--gutter);
+        z-index: 1;
+        flex-direction: column-reverse;
+        align-items: flex-start;
+        gap: var(--space-lg);
+        width: min(15rem, calc(100vw - 2 * var(--gutter)));
+        height: auto;
+        padding: 40px 32px;
+        border: 1px solid var(--color-primary);
+        border-radius: 32px;
+        background: linear-gradient(
+            135deg,
+            var(--color-surface) 0%,
+            var(--color-background-deep) 100%
+        );
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition:
+            opacity var(--transition-base),
+            transform var(--transition-base),
+            visibility var(--transition-base);
+    }
+
+    :host(.is-menu-open) .header-navigation {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
     }
 
     nav {
-        gap: var(--space-md);
+        flex-direction: column;
+        gap: var(--space-lg);
+        height: auto;
 
         a {
-        font-size: 16px;
+            font-size: 20px;
         }
     }
 
     .header-logo img {
         height: 36px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header-navigation {
+        transition: none;
     }
 }

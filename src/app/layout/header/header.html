@@ -1,6 +1,20 @@
 <header>
     <div class="container">
-        <div class="header-navigation">
+        <button
+            class="header-burger"
+            type="button"
+            id="header-menu-toggle"
+            aria-controls="header-menu"
+            [attr.aria-expanded]="menuOpen()"
+            [attr.aria-label]="menuOpen() ? 'Close menu' : 'Open menu'"
+            (click)="toggleMenu()"
+        >
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </button>
+
+        <div class="header-navigation" id="header-menu">
             <div class="language-switch">
             @for (lang of languages; track lang) {
                 <button
@@ -14,24 +28,14 @@
             }
             </div>
             <nav aria-label="Main navigation">
+            @for (link of navLinks; track link.id) {
                 <a
-                href="#about"
-                [class.is-active]="activeLink() === 'about'"
-                [attr.aria-current]="activeLink() === 'about' ? 'true' : null"
-                (click)="activeLink.set('about')"
-                >About me</a>
-                <a
-                href="#skills"
-                [class.is-active]="activeLink() === 'skills'"
-                [attr.aria-current]="activeLink() === 'skills' ? 'true' : null"
-                (click)="activeLink.set('skills')"
-                >Skills</a>
-                <a
-                href="#projects"
-                [class.is-active]="activeLink() === 'projects'"
-                [attr.aria-current]="activeLink() === 'projects' ? 'true' : null"
-                (click)="activeLink.set('projects')"
-                >Projects</a>
+                [href]="link.href"
+                [class.is-active]="activeLink() === link.id"
+                [attr.aria-current]="activeLink() === link.id ? 'true' : null"
+                (click)="selectLink(link.id)"
+                >{{ link.label }}</a>
+            }
             </nav>
         </div>
             <a class="header-logo" href="#" aria-label="Back to top">
