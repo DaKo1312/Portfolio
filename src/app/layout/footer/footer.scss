@@ -4,11 +4,13 @@
 
 .footer {
   padding-block: clamp(3rem, 6vw, 5rem) 64px;
+  container-type: inline-size;
 }
 
 .footer__inner {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 'brand copyright nav';
   gap: clamp(1.5rem, 4vw, 2.5rem);
   align-items: center;
   padding-inline: var(--gutter);
@@ -22,6 +24,7 @@
 }
 
 .footer__brand {
+  grid-area: brand;
   justify-content: space-between;
   gap: var(--space-xl);
   min-height: 126px;
@@ -33,8 +36,8 @@
 
   img {
     display: block;
-    width: auto;
-    height: 48px;
+    width: clamp(8rem, 20cqi, 11.4rem);
+    height: auto;
     transition: opacity var(--transition-fast);
   }
 
@@ -76,6 +79,7 @@
 }
 
 .footer__copyright {
+  grid-area: copyright;
   font-family: var(--font-mono);
   font-weight: 400;
   font-size: 18px;
@@ -85,6 +89,7 @@
 }
 
 .footer__nav {
+  grid-area: nav;
   align-items: flex-start;
   gap: var(--space-sm);
   justify-self: end;
@@ -123,4 +128,25 @@
 .footer__link:hover .footer__marker,
 .footer__link:focus-visible .footer__marker {
   opacity: 1;
+}
+
+@container (max-width: 900px) {
+  .footer__inner {
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'brand nav'
+      'copyright copyright';
+    column-gap: clamp(1rem, 4cqi, 2.5rem);
+    row-gap: 2.5rem;
+    align-items: start;
+  }
+
+  .footer__brand {
+    min-height: 0;
+  }
+
+  .footer__nav {
+    align-self: start;
+    padding-inline-start: 16px;
+  }
 }
