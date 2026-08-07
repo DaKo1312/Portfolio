@@ -1,25 +1,120 @@
 <section class="section projects" id="projects">
     <div class="section__inner">
         <div class="projects__content">
-        <div class="projects__heading">
-            <p class="section__eyebrow">Portfolio</p>
-            <h2 class="section__title">Featured Projects</h2>
-        </div>
-        <p class="projects__lead">
-            Explore a selection of my work here - Interact with projects to see my skills in action.
-        </p>
-        <ul class="projects__list">
-            @for (project of projects(); track project.name) {
-            <li class="projects__item">
-                <h3 class="projects__name">{{ project.name }}</h3>
-                <ul class="projects__stack">
-                @for (technology of project.stack; track technology) {
-                    <li class="projects__technology">{{ technology }}</li>
-                }
+            <div class="projects__heading">
+                <p class="section__eyebrow">Portfolio</p>
+                <h2 class="section__title">Featured Projects</h2>
+            </div>
+            <p class="projects__lead">
+                Explore a selection of my work here - Interact with projects to see my skills in action.
+            </p>
+
+            <div class="projects__listing">
+                <ul class="projects__list">
+                    @for (project of projects(); track project.name; let i = $index) {
+                    <li
+                        class="projects__item"
+                        (mouseenter)="hoveredIndex.set(i)"
+                        (mouseleave)="hoveredIndex.set(null)"
+                    >
+                        <button
+                            type="button"
+                            class="projects__trigger"
+                            [attr.aria-label]="'Open ' + project.name + ' project details'"
+                            (focus)="hoveredIndex.set(i)"
+                            (blur)="hoveredIndex.set(null)"
+                            (click)="open(i, $event)"
+                        ></button>
+                        <h3 class="projects__name">
+                            {{ project.name }}
+                            <img class="projects__name-arrow" src="icons/arrow_outward.png" alt="" aria-hidden="true" />
+                        </h3>
+                        <ul class="projects__stack">
+                            @for (technology of project.stack; track technology) {
+                            <li class="projects__technology">{{ technology }}</li>
+                            }
+                        </ul>
+
+                        @if (hoveredIndex() === i) {
+                        <div class="projects__preview" aria-hidden="true">
+                            <img class="projects__preview-image" [src]="project.image" alt="" />
+                        </div>
+                        }
+                    </li>
+                    }
                 </ul>
-            </li>
-            }
-        </ul>
+            </div>
         </div>
     </div>
+
+    @if (openProject(); as project) {
+    <div
+        class="projects__overlay"
+        role="dialog"
+        aria-modal="true"
+        [attr.aria-label]="project.name + ' project details'"
+        (click)="close()"
+    >
+        <div class="projects__dialog" (click)="$event.stopPropagation()">
+            <button
+                #closeButton
+                type="button"
+                class="projects__close"
+                aria-label="Close project details"
+                (click)="close()"
+            >
+                <img src="icons/close_small.png" alt="" aria-hidden="true" />
+            </button>
+
+            <div class="projects__dialog-main">
+                <div class="projects__dialog-info">
+                    <p class="projects__dialog-index">{{ label(openIndex() ?? 0) }}</p>
+                    <h3 class="projects__dialog-name">{{ project.name }}</h3>
+
+                    <h4 class="projects__dialog-question">What is this project about?</h4>
+                    <p class="projects__dialog-about">{{ project.about }}</p>
+
+                    <ul class="projects__dialog-stack">
+                        @for (technology of project.stack; track technology) {
+                        <li class="projects__dialog-technology">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path [attr.d]="icons[technology]" />
+                            </svg>
+                            <span>{{ technology }}</span>
+                        </li>
+                        }
+                    </ul>
+
+                    <div class="projects__dialog-actions">
+                        <a
+                            class="projects__action"
+                            [href]="project.repoUrl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub
+                            <img src="icons/arrow_outward.png" alt="" aria-hidden="true" />
+                        </a>
+                        <a
+                            class="projects__action"
+                            [href]="project.liveUrl"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Live Test
+                            <img src="icons/arrow_outward.png" alt="" aria-hidden="true" />
+                        </a>
+                    </div>
+                </div>
+
+                <img class="projects__dialog-image" [src]="project.image" alt="" />
+            </div>
+
+            <button type="button" class="projects__next" (click)="next()">
+                Next project
+                <img src="icons/arrow_forward_overlay.png" alt="" aria-hidden="true" />
+            </button>
+        </div>
+    </div>
+    }
 </section>
