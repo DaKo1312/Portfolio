@@ -100,6 +100,7 @@ nav {
     height: 26px;
 
     a {
+        position: relative;
         color: var(--color-text);
         font-family: var(--font-mono);
         font-size: 20px;
@@ -109,7 +110,27 @@ nav {
         text-decoration: none;
         transition: color var(--transition-fast);
 
-        &:hover {
+        &::after {
+        content: '';
+        position: absolute;
+        inset-block-start: calc(100% + 1px);
+        inset-inline-start: 50%;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--color-primary);
+        opacity: 0;
+        transform: translateX(-50%);
+        transition: opacity var(--transition-fast);
+        }
+
+        &:hover::after,
+        &:focus-visible::after,
+        &.is-active::after {
+        opacity: 1;
+        }
+
+        &.is-active {
         color: var(--color-primary);
         }
 
