@@ -76,7 +76,7 @@
 .skills__cta {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 1rem;
   width: min(100%, 20.6875rem);
 }
@@ -111,16 +111,39 @@
   line-height: 1.2;
   color: var(--color-text);
   text-decoration: none;
-  transition:
-    color var(--transition-fast, 0.15s) ease,
-    background-color var(--transition-fast, 0.15s) ease,
-    border-color var(--transition-fast, 0.15s) ease;
+  overflow: hidden;
+  transition: border-color var(--transition-fast, 0.15s) ease;
 
   &:hover,
   &:focus-visible {
     border-color: var(--color-primary);
-    background-color: var(--color-primary);
-    color: var(--color-background);
+  }
+
+  &:hover .skills__button-label,
+  &:focus-visible .skills__button-label {
+    animation: skills-button-label 0.5s ease-in-out;
+  }
+}
+
+.skills__button-label {
+  display: block;
+}
+
+@keyframes skills-button-label {
+  0% {
+    transform: translateX(0);
+  }
+
+  45% {
+    transform: translateX(-200%);
+  }
+
+  46% {
+    transform: translateX(200%);
+  }
+
+  100% {
+    transform: translateX(0);
   }
 }
 
@@ -143,7 +166,7 @@
   width: 104px;
 
   &:hover .skills__icon {
-    color: var(--color-primary);
+    transform: scale(1.12);
   }
 }
 
@@ -152,7 +175,18 @@
   height: 60px;
   color: var(--color-text);
   fill: currentColor;
-  transition: color var(--transition-fast, 0.15s) ease;
+  transition: transform var(--transition-fast, 0.15s) ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skills__icon {
+    transition: none;
+  }
+
+  .skills__button:hover .skills__button-label,
+  .skills__button:focus-visible .skills__button-label {
+    animation: none;
+  }
 }
 
 .skills__label {
