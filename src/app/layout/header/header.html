@@ -30,7 +30,8 @@
             <nav aria-label="Main navigation">
             @for (link of navLinks; track link.id) {
                 <a
-                [href]="link.href"
+                routerLink="/"
+                [fragment]="link.id"
                 [class.is-active]="activeLink() === link.id"
                 [attr.aria-current]="activeLink() === link.id ? 'true' : null"
                 (click)="selectLink(link.id)"
@@ -38,7 +39,7 @@
             }
             </nav>
         </div>
-            <a class="header-logo" href="#" aria-label="Back to top">
+            <a class="header-logo" routerLink="/" aria-label="Back to top" (click)="scrollToTop()">
                 <img class="header-logo-default" src="logo/logo.png" alt="Daniel Korbmacher logo" width="814" height="214" />
                 <img class="header-logo-hover" src="logo/logo1.png" alt="" aria-hidden="true" width="814" height="214" />
             </a>

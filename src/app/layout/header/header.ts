@@ -1,16 +1,16 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 export type Language = 'EN' | 'DE';
 
 export interface NavLink {
   readonly id: string;
-  readonly href: string;
   readonly label: string;
 }
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,9 +26,9 @@ export class Header {
   protected readonly language = signal<Language>('EN');
 
   protected readonly navLinks: readonly NavLink[] = [
-    { id: 'about', href: '#about', label: 'About me' },
-    { id: 'skills', href: '#skills', label: 'Skills' },
-    { id: 'projects', href: '#projects', label: 'Projects' },
+    { id: 'about', label: 'About me' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'projects', label: 'Projects' },
   ];
 
   protected selectLanguage(language: Language): void {
@@ -46,5 +46,11 @@ export class Header {
   protected selectLink(id: string): void {
     this.activeLink.set(id);
     this.closeMenu();
+  }
+
+  protected scrollToTop(): void {
+    this.activeLink.set(null);
+    this.closeMenu();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 }

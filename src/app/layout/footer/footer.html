@@ -1,7 +1,7 @@
 <footer class="footer">
   <div class="container footer__inner">
     <div class="footer__brand">
-      <a class="footer__logo" href="#" aria-label="Back to top">
+      <a class="footer__logo" routerLink="/" aria-label="Back to top" (click)="scrollToTop()">
         <img
           class="footer__logo-default"
           src="logo/logo.png"
@@ -29,15 +29,22 @@
 
     <nav class="footer__nav" aria-label="Footer navigation">
       @for (link of links; track link.label) {
-        <a
-          class="footer__link"
-          [href]="link.href"
-          [attr.target]="link.external ? '_blank' : null"
-          [attr.rel]="link.external ? 'noopener noreferrer' : null"
-        >
-          <span class="footer__marker" aria-hidden="true"></span>
-          {{ link.label }}
-        </a>
+        @if (link.route) {
+          <a class="footer__link" [routerLink]="link.route">
+            <span class="footer__marker" aria-hidden="true"></span>
+            {{ link.label }}
+          </a>
+        } @else {
+          <a
+            class="footer__link"
+            [href]="link.href"
+            [attr.target]="link.external ? '_blank' : null"
+            [attr.rel]="link.external ? 'noopener noreferrer' : null"
+          >
+            <span class="footer__marker" aria-hidden="true"></span>
+            {{ link.label }}
+          </a>
+        }
       }
     </nav>
   </div>
