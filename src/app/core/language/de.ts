@@ -42,8 +42,8 @@ export const DE: Translations = {
       'Hallo, ich bin Daniel! Schreibe hier etwas über dich mit IT-Bezug. Warum begeistert dich das Programmieren? Woher nimmst du die Inspiration, deine Fähigkeiten immer weiter zu verbessern?',
     highlights: [
       'Ansässig in Troisdorf, Deutschland — verfügbar für Remote-Arbeit in ganz Europa.',
-      'Platzhalter: Beschreibe, wie du an Probleme herangehst. Wie sieht dein Workflow aus, und worauf legst du in einer Codebasis Wert?',
-      'Platzhalter: Beschreibe, was du gerade lernst und wohin du dich entwickeln willst. Nenne die Technologien, die du dir ansiehst, und was dich antreibt, als Entwickler besser zu werden.',
+      'Aus der JavaScript-Welt kommend stecke ich gerade tief in TypeScript und Angular — und mag den Moment, in dem ein neues Konzept endlich klickt. Neue Werkzeuge schrecken mich nicht ab; ich lese lieber die Doku und baue etwas damit.',
+      'Ich zerlege ein Problem, bis jedes Teilstück testbar ist, und baue von dort wieder auf. Das Automatisieren meines Smart Homes hat mich Ausdauer gelehrt — die elegante Lösung kommt meist beim dritten Versuch.',
     ],
   },
   skills: {
@@ -68,7 +68,8 @@ export const DE: Translations = {
     next: 'Nächstes Projekt',
     about: {
       join: 'Aufgabenverwaltung nach dem Kanban-Prinzip. Aufgaben per Drag and Drop anlegen und ordnen, Nutzer und Kategorien zuweisen.',
-      pollo: 'Hier steht eine kurze Beschreibung von El Pollo Loco.',
+      pollo:
+        'Jump-and-Run-Spiel mit purem JavaScript und der Canvas-API. Objektorientierte Game-Loop mit Kollisionsabfrage, Sprite-Animationen, Sound und Endgegner-Kampf.',
       bubble: 'Hier steht eine kurze Beschreibung von DA Bubble.',
     },
   },

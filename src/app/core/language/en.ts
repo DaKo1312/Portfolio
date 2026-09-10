@@ -42,8 +42,8 @@ export const EN: Translations = {
       "Hey there, I'm Daniel! Write some information about yourself that is IT related. Why are you passionate about coding? What is your source of inspiration for improving your programming skills?",
     highlights: [
       'Based in Troisdorf, Germany — available for remote work across Europe.',
-      'Placeholder: describe how you approach problems. What does your workflow look like, and what do you value in a codebase?',
-      'Placeholder: describe what you are learning right now and where you want to grow. Mention the technologies you are exploring and what drives you to keep improving as a developer.',
+      "Coming from JavaScript, I'm currently deep in TypeScript and Angular — and I like the moment a new concept finally clicks. New tools don't scare me; I'd rather read the docs and build something with them.",
+      'I break a problem down until every piece is testable, then build back up from there. Automating my own smart home taught me persistence — the elegant solution usually turns up on the third attempt.',
     ],
   },
   skills: {
@@ -67,7 +67,8 @@ export const EN: Translations = {
     next: 'Next project',
     about: {
       join: 'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories.',
-      pollo: 'Short description of El Pollo Loco goes here.',
+      pollo:
+        'Jump-and-run game built with vanilla JavaScript and the Canvas API. Object-oriented game loop with collision detection, sprite animations, sound and a final boss fight.',
       bubble: 'Short description of DA Bubble goes here.',
     },
   },
