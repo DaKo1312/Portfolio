@@ -97,14 +97,62 @@ describe('References', () => {
   it('should leave the middle block forwards and settle back on the first reference', () => {
     const [, next] = arrows();
 
-    next.click();
-    next.click();
-    next.click();
-    fixture.detectChanges();
+    for (let click = 0; click < 3; click += 1) {
+      next.click();
+      fixture.detectChanges();
+      if (click < 2) {
+        settleTrack();
+      }
+    }
+
     expect(activeSlide()).toBe(6);
     expect(activeDot()).toBe(0);
     settleTrack();
     expect(activeSlide()).toBe(3);
+    expect(activeDot()).toBe(0);
+  });
+
+  it('should ignore further clicks while the track is still moving', () => {
+    const [, next] = arrows();
+
+    next.click();
+    next.click();
+    next.click();
+    fixture.detectChanges();
+
+    expect(activeSlide()).toBe(4);
+    expect(activeDot()).toBe(1);
+  });
+
+  it('should never move the track past the rendered slides', () => {
+    const [previous, next] = arrows();
+    const total = element.querySelectorAll('.references__slide').length;
+    const clicks = [next, next, next, next, previous, previous, previous, previous, previous];
+
+    for (const arrow of clicks) {
+      arrow.click();
+      fixture.detectChanges();
+      expect(activeSlide()).toBeGreaterThan(0);
+      expect(activeSlide()).toBeLessThan(total - 1);
+      settleTrack();
+    }
+  });
+
+  it('should stay on a whole reference after wrapping in both directions', () => {
+    const [previous, next] = arrows();
+
+    for (let click = 0; click < 7; click += 1) {
+      next.click();
+      fixture.detectChanges();
+      settleTrack();
+    }
+    expect(activeDot()).toBe(1);
+
+    for (let click = 0; click < 7; click += 1) {
+      previous.click();
+      fixture.detectChanges();
+      settleTrack();
+    }
     expect(activeDot()).toBe(0);
   });
 

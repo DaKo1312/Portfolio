@@ -113,7 +113,7 @@
 
 .references__mark {
   position: absolute;
-  top: clamp(2rem, 5.7vw, 82px);
+  top: 0.069em;
   left: calc(50% - var(--card-width) / 2 - 45px);
   font-family: var(--font-body);
   font-weight: 700;
