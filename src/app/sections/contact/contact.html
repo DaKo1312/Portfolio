@@ -2,17 +2,13 @@
   <div class="contact__inner">
     <div class="contact__intro">
       <div class="contact__lead">
-        <p class="contact__eyebrow">Contact me</p>
-        <h2 class="contact__title">Let's work together</h2>
+        <p class="contact__eyebrow">{{ t().contact.eyebrow }}</p>
+        <h2 class="contact__title">{{ t().contact.title }}</h2>
       </div>
 
       <div class="contact__pitch">
-        <h3 class="contact__pitch-title">Got a problem to solve?</h3>
-        <p class="contact__pitch-text">
-          Encourage people to contact you and describe what role you are interested in. Show that
-          you will add value to their projects through your work. Need a Frontend developer? Let's
-          talk!
-        </p>
+        <h3 class="contact__pitch-title">{{ t().contact.pitchTitle }}</h3>
+        <p class="contact__pitch-text">{{ t().contact.pitchText }}</p>
       </div>
     </div>
 
@@ -23,7 +19,7 @@
           [class.contact__field--error]="nameError()"
           (click)="nameShown.set(!nameShown()); nameRef.focus()"
         >
-          <span class="contact__label" id="contact-name-label">What's your name?</span>
+          <span class="contact__label" id="contact-name-label">{{ t().contact.nameLabel }}</span>
           <span class="contact__control">
             <input
               #nameRef
@@ -32,7 +28,7 @@
               class="contact__input"
               type="text"
               autocomplete="name"
-              placeholder="Your name goes here"
+              [placeholder]="t().contact.namePlaceholder"
               [value]="name()"
               [attr.aria-invalid]="nameError()"
               (input)="name.set(nameRef.value)"
@@ -48,7 +44,7 @@
           [class.contact__field--error]="emailError()"
           (click)="emailShown.set(!emailShown()); emailRef.focus()"
         >
-          <span class="contact__label" id="contact-email-label">What's your email?</span>
+          <span class="contact__label" id="contact-email-label">{{ t().contact.emailLabel }}</span>
           <span class="contact__control">
             <input
               #emailRef
@@ -57,7 +53,7 @@
               class="contact__input"
               type="email"
               autocomplete="email"
-              placeholder="youremail@email.com"
+              [placeholder]="t().contact.emailPlaceholder"
               [value]="email()"
               [attr.aria-invalid]="emailError()"
               (input)="email.set(emailRef.value)"
@@ -76,7 +72,7 @@
           [class.contact__field--error]="messageError()"
           (click)="messageShown.set(!messageShown()); messageRef.focus()"
         >
-          <span class="contact__label" id="contact-message-label">How can I help you?</span>
+          <span class="contact__label" id="contact-message-label">{{ t().contact.messageLabel }}</span>
           <span class="contact__control">
             <textarea
               #messageRef
@@ -84,7 +80,7 @@
               aria-labelledby="contact-message-label"
               class="contact__input contact__input--area"
               rows="1"
-              placeholder="Hello Daniel, I am interested in..."
+              [placeholder]="t().contact.messagePlaceholder"
               [value]="message()"
               [attr.aria-invalid]="messageError()"
               (input)="message.set(messageRef.value)"
@@ -108,18 +104,20 @@
             />
             <span class="contact__checkbox-box" aria-hidden="true"></span>
             <span class="contact__checkbox-text">
-              I've read the <a class="contact__link" routerLink="/privacy-policy">privacy policy</a> and
-              agree to the processing of my data as outlined.
+              {{ t().contact.privacyBefore
+              }}<a class="contact__link" routerLink="/privacy-policy">{{
+                t().contact.privacyLink
+              }}</a>{{ t().contact.privacyAfter }}
             </span>
           </label>
 
           @if (privacyError()) {
-            <p class="contact__hint">Please accept the privacy policy.</p>
+            <p class="contact__hint">{{ t().contact.privacyError }}</p>
           }
         </div>
 
         <button class="contact__submit" type="submit" [disabled]="status() === 'sending'">
-          {{ status() === 'sending' ? 'Sending...' : 'Send' }}
+          {{ status() === 'sending' ? t().contact.sending : t().contact.submit }}
         </button>
 
         <p
@@ -129,9 +127,9 @@
           aria-live="polite"
         >
           @if (status() === 'sent') {
-            Thanks — your message is on its way.
+            {{ t().contact.sent }}
           } @else if (status() === 'error') {
-            Something went wrong. Please try again in a moment.
+            {{ t().contact.failed }}
           }
         </p>
       </div>

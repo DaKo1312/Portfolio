@@ -1,12 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
-interface FooterLink {
-  readonly label: string;
-  readonly href?: string;
-  readonly route?: string;
-  readonly external: boolean;
-}
+import { LanguageService } from '../../core/language/language';
 
 @Component({
   selector: 'app-footer',
@@ -16,12 +10,10 @@ interface FooterLink {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Footer {
-  protected readonly links: readonly FooterLink[] = [
-    { label: 'Github', href: 'https://github.com/', external: true },
-    { label: 'LinkedIn', href: 'https://linkedin.com/', external: true },
-    { label: 'Email', href: 'mailto:kontakt@daniel-korbmacher.de', external: false },
-    { label: 'Legal Notice', route: '/legal-notice', external: false },
-  ];
+  protected readonly t = inject(LanguageService).t;
+  protected readonly githubUrl = 'https://github.com/';
+  protected readonly linkedinUrl = 'https://linkedin.com/';
+  protected readonly mailto = 'mailto:kontakt@daniel-korbmacher.de';
 
   protected scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });

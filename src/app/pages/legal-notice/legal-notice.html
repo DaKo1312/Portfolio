@@ -1,18 +1,18 @@
 <article class="legal">
   <div class="legal__inner">
-    <h1 class="legal__title">Legal Notice</h1>
+    <h1 class="legal__title">{{ t().legal.title }}</h1>
 
     <div class="legal__content">
       <section class="legal__block">
-        <h2 class="legal__heading">Imprint</h2>
+        <h2 class="legal__heading">{{ t().legal.addressTitle }}</h2>
         <address class="legal__imprint">
-          @for (line of imprint; track line) {
+          @for (line of t().legal.address; track line) {
             <span>{{ line }}</span>
           }
         </address>
       </section>
 
-      @for (section of sections; track section.title) {
+      @for (section of t().legal.sections; track section.title) {
         <section class="legal__block">
           <h2 class="legal__heading">{{ section.title }}</h2>
           @for (paragraph of section.paragraphs; track paragraph) {
@@ -21,7 +21,7 @@
         </section>
       }
 
-      <p class="legal__date">{{ updatedAt }}</p>
+      <p class="legal__date">{{ t().legal.date }}</p>
     </div>
   </div>
 </article>

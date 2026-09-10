@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { LanguageService } from '../../core/language/language';
 
 export interface SocialLink {
   readonly label: string;
@@ -20,7 +21,7 @@ const LINKEDIN_ICON =
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Hero {
-  protected readonly role = 'Frontend Developer';
+  protected readonly t = inject(LanguageService).t;
 
   protected readonly name = 'Daniel Korbmacher';
 
@@ -29,13 +30,6 @@ export class Hero {
   protected readonly socials: readonly SocialLink[] = [
     { label: 'GitHub', href: 'https://github.com/', icon: GITHUB_ICON },
     { label: 'LinkedIn', href: 'https://linkedin.com/', icon: LINKEDIN_ICON },
-  ];
-
-  protected readonly marqueeItems: readonly string[] = [
-    'Available for remote work',
-    'Frontend Developer',
-    'Based in Troisdorf',
-    'Open to work',
   ];
 
   protected readonly marqueeGroups: readonly number[] = [0, 1];

@@ -1,6 +1,6 @@
 <section class="references" id="references" aria-labelledby="references-title">
   <div class="references__inner">
-    <h2 class="references__title" id="references-title">What my colleagues say about me</h2>
+    <h2 class="references__title" id="references-title">{{ t().references.title }}</h2>
 
     <div class="references__viewport">
       <ul
@@ -29,7 +29,7 @@
       <button
         class="references__arrow"
         type="button"
-        aria-label="Show previous reference"
+        [attr.aria-label]="t().references.previous"
         (click)="previous()"
       >
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -44,7 +44,7 @@
             type="button"
             [class.references__dot--active]="index === activeIndex()"
             [attr.aria-current]="index === activeIndex() ? 'true' : null"
-            [attr.aria-label]="'Show reference ' + (index + 1)"
+            [attr.aria-label]="t().references.show(index + 1)"
             (click)="select(index)"
           ></button>
         }
@@ -53,7 +53,7 @@
       <button
         class="references__arrow"
         type="button"
-        aria-label="Show next reference"
+        [attr.aria-label]="t().references.next"
         (click)="next()"
       >
         <svg viewBox="0 0 24 24" aria-hidden="true">

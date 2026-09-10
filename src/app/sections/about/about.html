@@ -2,20 +2,20 @@
     <div class="about__inner">
         <div class="about__photo">
             @if (photo(); as src) {
-            <img class="about__photo-image" [src]="src" alt="Portrait of Daniel Korbmacher" />
+            <img class="about__photo-image" [src]="src" [alt]="t().about.portraitAlt" />
             }
         </div>
         <div class="about__content">
-            <p class="about__eyebrow">Who I Am</p>
+            <p class="about__eyebrow">{{ t().about.eyebrow }}</p>
             <div class="about__card">
-                <h2 class="about__title">About me</h2>
+                <h2 class="about__title">{{ t().about.title }}</h2>
                 <div class="about__body">
-                    <p class="about__intro">{{ intro() }}</p>
+                    <p class="about__intro">{{ t().about.intro }}</p>
                     <ul class="about__highlights">
-                        @for (highlight of highlights(); track highlight.text) {
+                        @for (icon of icons; track icon; let index = $index) {
                         <li class="about__highlight">
                             <span class="about__icon" aria-hidden="true">
-                                @switch (highlight.icon) {
+                                @switch (icon) {
                                 @case ('location') {
                                 <svg viewBox="0 0 24 24" fill="currentColor">
                                     <path
@@ -36,7 +36,7 @@
                                 }
                                 }
                             </span>
-                            <p class="about__highlight-text">{{ highlight.text }}</p>
+                            <p class="about__highlight-text">{{ t().about.highlights[index] }}</p>
                         </li>
                         }
                     </ul>

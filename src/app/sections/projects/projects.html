@@ -2,12 +2,10 @@
     <div class="section__inner">
         <div class="projects__content">
             <div class="projects__heading">
-                <p class="section__eyebrow">Portfolio</p>
-                <h2 class="section__title">Featured Projects</h2>
+                <p class="section__eyebrow">{{ t().projects.eyebrow }}</p>
+                <h2 class="section__title">{{ t().projects.title }}</h2>
             </div>
-            <p class="projects__lead">
-                Explore a selection of my work here - Interact with projects to see my skills in action.
-            </p>
+            <p class="projects__lead">{{ t().projects.lead }}</p>
 
             <div class="projects__listing">
                 <ul class="projects__list">
@@ -20,7 +18,7 @@
                         <button
                             type="button"
                             class="projects__trigger"
-                            [attr.aria-label]="'Open ' + project.name + ' project details'"
+                            [attr.aria-label]="t().projects.openDetails(project.name)"
                             (focus)="hoveredIndex.set(i)"
                             (blur)="hoveredIndex.set(null)"
                             (click)="open(i, $event)"
@@ -52,7 +50,7 @@
         class="projects__overlay"
         role="dialog"
         aria-modal="true"
-        [attr.aria-label]="project.name + ' project details'"
+        [attr.aria-label]="t().projects.dialogLabel(project.name)"
         (click)="close()"
     >
         <div class="projects__dialog" (click)="$event.stopPropagation()">
@@ -60,7 +58,7 @@
                 #closeButton
                 type="button"
                 class="projects__close"
-                aria-label="Close project details"
+                [attr.aria-label]="t().projects.close"
                 (click)="close()"
             >
                 <img src="icons/close_small.png" alt="" aria-hidden="true" />
@@ -71,8 +69,8 @@
                     <p class="projects__dialog-index">{{ label(openIndex() ?? 0) }}</p>
                     <h3 class="projects__dialog-name">{{ project.name }}</h3>
 
-                    <h4 class="projects__dialog-question">What is this project about?</h4>
-                    <p class="projects__dialog-about">{{ project.about }}</p>
+                    <h4 class="projects__dialog-question">{{ t().projects.question }}</h4>
+                    <p class="projects__dialog-about">{{ t().projects.about[project.id] }}</p>
 
                     <ul class="projects__dialog-stack">
                         @for (technology of project.stack; track technology) {
@@ -92,7 +90,7 @@
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            GitHub
+                            {{ t().projects.repo }}
                             <img src="icons/arrow_outward.png" alt="" aria-hidden="true" />
                         </a>
                         <a
@@ -101,7 +99,7 @@
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Live Test
+                            {{ t().projects.live }}
                             <img src="icons/arrow_outward.png" alt="" aria-hidden="true" />
                         </a>
                     </div>
@@ -111,7 +109,7 @@
             </div>
 
             <button type="button" class="projects__next" (click)="next()">
-                Next project
+                {{ t().projects.next }}
                 <img src="icons/arrow_forward_overlay.png" alt="" aria-hidden="true" />
             </button>
         </div>

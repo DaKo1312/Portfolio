@@ -1,12 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LanguageService } from '../../core/language/language';
 
 const FORM_ENDPOINT = 'https://api.web3forms.com/submit'
 const FORM_ACCESS_KEY = 'YOUR_ACCESS_KEY';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const NAME_ERROR = 'Oops! it seems your name is missing';
-const EMAIL_ERROR = 'Hoppla! your email is required';
-const MESSAGE_ERROR = 'What do you need to develop?';
 
 type SubmitStatus = 'idle' | 'sending' | 'sent' | 'error';
 
@@ -18,6 +16,7 @@ type SubmitStatus = 'idle' | 'sending' | 'sent' | 'error';
   imports: [RouterLink],
 })
 export class Contact {
+  protected readonly t = inject(LanguageService).t;
   protected readonly name = signal('');
   protected readonly email = signal('');
   protected readonly message = signal('');
@@ -38,17 +37,17 @@ export class Contact {
   );
   protected readonly privacyError = computed(() => this.submitted() && !this.accepted());
   protected readonly nameMessage = computed(() =>
-    this.nameError() && this.name().length === 0 ? NAME_ERROR : '',
+    this.nameError() && this.name().length === 0 ? this.t().contact.nameError : '',
   );
   protected readonly emailMessage = computed(() =>
-    this.emailError() && this.email().length === 0 ? EMAIL_ERROR : '',
+    this.emailError() && this.email().length === 0 ? this.t().contact.emailError : '',
   );
   protected readonly messageMessage = computed(() =>
-    this.messageError() && this.message().length === 0 ? MESSAGE_ERROR : '',
+    this.messageError() && this.message().length === 0 ? this.t().contact.messageError : '',
   );
 
   protected readonly emailHint = computed(() =>
-    this.emailError() && this.email().length > 0 ? EMAIL_ERROR : '',
+    this.emailError() && this.email().length > 0 ? this.t().contact.emailError : '',
   );
 
   private readonly valid = computed(

@@ -1,12 +1,9 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { LanguageService } from '../../core/language/language';
+import { Translations } from '../../core/language/translations';
 
-export type Language = 'EN' | 'DE';
-
-export interface NavLink {
-  readonly id: string;
-  readonly label: string;
-}
+export type NavKey = keyof Translations['header']['nav'];
 
 @Component({
   selector: 'app-header',
@@ -20,20 +17,11 @@ export interface NavLink {
   },
 })
 export class Header {
-  protected readonly activeLink = signal<string | null>(null);
+  protected readonly language = inject(LanguageService);
+  protected readonly t = this.language.t;
+  protected readonly activeLink = signal<NavKey | null>(null);
   protected readonly menuOpen = signal(false);
-  protected readonly languages: readonly Language[] = ['EN', 'DE'];
-  protected readonly language = signal<Language>('EN');
-
-  protected readonly navLinks: readonly NavLink[] = [
-    { id: 'about', label: 'About me' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-  ];
-
-  protected selectLanguage(language: Language): void {
-    this.language.set(language);
-  }
+  protected readonly navLinks: readonly NavKey[] = ['about', 'skills', 'projects'];
 
   protected toggleMenu(): void {
     this.menuOpen.update((open) => !open);
@@ -43,7 +31,7 @@ export class Header {
     this.menuOpen.set(false);
   }
 
-  protected selectLink(id: string): void {
+  protected selectLink(id: NavKey): void {
     this.activeLink.set(id);
     this.closeMenu();
   }

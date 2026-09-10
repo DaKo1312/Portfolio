@@ -6,7 +6,7 @@
             id="header-menu-toggle"
             aria-controls="header-menu"
             [attr.aria-expanded]="menuOpen()"
-            [attr.aria-label]="menuOpen() ? 'Close menu' : 'Open menu'"
+            [attr.aria-label]="menuOpen() ? t().header.closeMenu : t().header.openMenu"
             (click)="toggleMenu()"
         >
             <span aria-hidden="true"></span>
@@ -16,31 +16,31 @@
 
         <div class="header-navigation" id="header-menu">
             <div class="language-switch">
-            @for (lang of languages; track lang) {
+            @for (option of language.languages; track option) {
                 <button
                 type="button"
-                [attr.aria-pressed]="language() === lang"
-                [attr.aria-label]="lang === 'EN' ? 'Switch to English' : 'Auf Deutsch umschalten'"
-                (click)="selectLanguage(lang)"
+                [attr.aria-pressed]="language.current() === option"
+                [attr.aria-label]="t().header.switchTo[option]"
+                (click)="language.use(option)"
                 >
-                {{ lang }}
+                {{ option }}
                 </button>
             }
             </div>
-            <nav aria-label="Main navigation">
-            @for (link of navLinks; track link.id) {
+            <nav [attr.aria-label]="t().header.mainNavigation">
+            @for (link of navLinks; track link) {
                 <a
                 routerLink="/"
-                [fragment]="link.id"
-                [class.is-active]="activeLink() === link.id"
-                [attr.aria-current]="activeLink() === link.id ? 'true' : null"
-                (click)="selectLink(link.id)"
-                >{{ link.label }}</a>
+                [fragment]="link"
+                [class.is-active]="activeLink() === link"
+                [attr.aria-current]="activeLink() === link ? 'true' : null"
+                (click)="selectLink(link)"
+                >{{ t().header.nav[link] }}</a>
             }
             </nav>
         </div>
-            <a class="header-logo" routerLink="/" aria-label="Back to top" (click)="scrollToTop()">
-                <img class="header-logo-default" src="logo/logo.png" alt="Daniel Korbmacher logo" width="814" height="214" />
+            <a class="header-logo" routerLink="/" [attr.aria-label]="t().header.backToTop" (click)="scrollToTop()">
+                <img class="header-logo-default" src="logo/logo.png" [alt]="t().header.logoAlt" width="814" height="214" />
                 <img class="header-logo-hover" src="logo/logo1.png" alt="" aria-hidden="true" width="814" height="214" />
             </a>
     </div>

@@ -1,16 +1,12 @@
-import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { LanguageService } from '../../core/language/language';
+import { Reference } from '../../core/language/translations';
 
 const ARROW_BACK_ICON =
   'M11.29 5.29 4.59 12l6.7 6.71 1.42-1.42L8.41 13H20v-2H8.41l4.3-4.29-1.42-1.42Z';
 
 const ARROW_FORWARD_ICON =
   'M12.71 5.29 19.41 12l-6.7 6.71-1.42-1.42L15.59 13H4v-2h11.59l-4.3-4.29 1.42-1.42Z';
-
-export interface Reference {
-  readonly quote: string;
-  readonly author: string;
-  readonly role: string;
-}
 
 @Component({
   selector: 'app-references',
@@ -20,28 +16,11 @@ export interface Reference {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class References {
+  protected readonly t = inject(LanguageService).t;
   protected readonly backIcon = ARROW_BACK_ICON;
   protected readonly forwardIcon = ARROW_FORWARD_ICON;
 
-  protected readonly references = signal<readonly Reference[]>([
-    {
-      quote: 'Our project benefited enormously from Daniel efficient way of working.',
-      author: 'T. Schulz',
-      role: 'Frontend Developer',
-    },
-    {
-      quote:
-        'Daniel has proven to be a reliable group partner. His technical skills and proactive approach were crucial to the success of our project.',
-      author: 'H. Janisch',
-      role: 'Team Partner',
-    },
-    {
-      quote:
-        "I had the good fortune of working with Daniel in a group project at the Developer Akademie that involved a lot of effort. He always stayed calm, cool, and focused, and made sure our team was set up for success. He's super knowledgeable, easy to work with, and I'd happily work with him again given the chance.",
-      author: 'A. Fischer',
-      role: 'Team Partner',
-    },
-  ]);
+  protected readonly references = computed<readonly Reference[]>(() => this.t().references.items);
 
   protected readonly slides = computed<readonly Reference[]>(() => {
     const items = this.references();

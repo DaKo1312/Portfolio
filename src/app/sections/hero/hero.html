@@ -1,15 +1,15 @@
 <section class="hero" id="top">
   <div class="container hero-content">
-    <p class="hero-role">{{ role }}</p>
+    <p class="hero-role">{{ t().hero.role }}</p>
     <h1 class="hero-name">{{ name }}</h1>
     <div class="hero-actions">
-      <a class="hero-button" href="#projects"><span class="hero-button-label">Check my work</span></a>
-      <a class="hero-button" href="#contact"><span class="hero-button-label">Contact me</span></a>
+      <a class="hero-button" href="#projects"><span class="hero-button-label">{{ t().hero.work }}</span></a>
+      <a class="hero-button" href="#contact"><span class="hero-button-label">{{ t().hero.contact }}</span></a>
     </div>
   </div>
 
   <div class="hero-lateral hero-lateral--left">
-    <a class="hero-scroll" href="#about" aria-label="Scroll down">
+    <a class="hero-scroll" href="#about" [attr.aria-label]="t().hero.scrollDown">
       <span class="hero-scroll-dot" aria-hidden="true"></span>
     </a>
     <span class="hero-line hero-line--primary" aria-hidden="true"></span>
@@ -40,7 +40,7 @@
     <div class="hero-marquee-track">
       @for (group of marqueeGroups; track group) {
         <div class="hero-marquee-group">
-          @for (item of marqueeItems; track item) {
+          @for (item of t().hero.marquee; track item) {
             <span class="hero-marquee-dot"></span>
             <span class="hero-marquee-item">{{ item }}</span>
           }

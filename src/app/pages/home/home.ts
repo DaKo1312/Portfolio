@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, inject } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { LanguageService } from '../../core/language/language';
 import { Hero } from '../../sections/hero/hero';
 import { About } from '../../sections/about/about';
 import { Skills } from '../../sections/skills/skills';
@@ -12,4 +14,11 @@ import { Contact } from '../../sections/contact/contact';
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Home {}
+export class Home {
+  private readonly t = inject(LanguageService).t;
+  private readonly title = inject(Title);
+
+  constructor() {
+    effect(() => this.title.setTitle(this.t().meta.home));
+  }
+}

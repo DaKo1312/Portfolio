@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { LanguageService } from '../../core/language/language';
 
 export interface Skill {
   readonly name: string;
@@ -13,6 +14,8 @@ export interface Skill {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Skills {
+  protected readonly t = inject(LanguageService).t;
+
   protected readonly skills = signal<readonly Skill[]>([
     {
       name: 'HTML',
