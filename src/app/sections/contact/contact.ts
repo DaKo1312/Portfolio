@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 const FORM_ENDPOINT = 'https://api.web3forms.com/submit'
 const FORM_ACCESS_KEY = 'YOUR_ACCESS_KEY';
@@ -14,7 +15,7 @@ type SubmitStatus = 'idle' | 'sending' | 'sent' | 'error';
   templateUrl: './contact.html',
   styleUrl: './contact.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [],
+  imports: [RouterLink],
 })
 export class Contact {
   protected readonly name = signal('');

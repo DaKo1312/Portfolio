@@ -13,6 +13,11 @@ export const routes: Routes = [
     title: 'Legal Notice | Daniel Korbmacher',
   },
   {
+    path: 'privacy-policy',
+    loadComponent: () => import('./pages/privacy-policy/privacy-policy').then((m) => m.PrivacyPolicy),
+    title: 'Privacy Policy | Daniel Korbmacher',
+  },
+  {
     path: '**',
     redirectTo: '',
   },

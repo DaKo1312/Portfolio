@@ -1,0 +1,27 @@
+<article class="legal">
+  <div class="legal__inner">
+    <h1 class="legal__title">Privacy Policy</h1>
+
+    <div class="legal__content">
+      <section class="legal__block">
+        <h2 class="legal__heading">Responsible for data processing</h2>
+        <address class="legal__imprint">
+          @for (line of controller; track line) {
+            <span>{{ line }}</span>
+          }
+        </address>
+      </section>
+
+      @for (section of sections; track section.title) {
+        <section class="legal__block">
+          <h2 class="legal__heading">{{ section.title }}</h2>
+          @for (paragraph of section.paragraphs; track paragraph) {
+            <p class="legal__text">{{ paragraph }}</p>
+          }
+        </section>
+      }
+
+      <p class="legal__date">{{ updatedAt }}</p>
+    </div>
+  </div>
+</article>
