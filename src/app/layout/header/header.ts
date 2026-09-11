@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../core/language/language';
 import { Translations } from '../../core/language/translations';
@@ -14,9 +14,11 @@ export type NavKey = keyof Translations['header']['nav'];
   host: {
     '[class.is-menu-open]': 'menuOpen()',
     '(document:keydown.escape)': 'closeMenu()',
+    '(document:pointerdown)': 'onDocumentPointerDown($event)',
   },
 })
 export class Header {
+  private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   protected readonly language = inject(LanguageService);
   protected readonly t = this.language.t;
   protected readonly activeLink = signal<NavKey | null>(null);
@@ -29,6 +31,18 @@ export class Header {
 
   protected closeMenu(): void {
     this.menuOpen.set(false);
+  }
+
+  protected onDocumentPointerDown(event: PointerEvent): void {
+    if (!this.menuOpen()) {
+      return;
+    }
+
+    if (this.host.nativeElement.contains(event.target as Node)) {
+      return;
+    }
+
+    this.closeMenu();
   }
 
   protected selectLink(id: NavKey): void {
