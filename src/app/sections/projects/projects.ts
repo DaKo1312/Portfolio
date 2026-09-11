@@ -50,7 +50,7 @@ export class Projects {
             name: 'Join',
             stack: ['Angular', 'TypeScript', 'HTML', 'CSS', 'Supabase'],
             image: 'images/join.png',
-            repoUrl: 'https://github.com/',
+            repoUrl: 'https://github.com/DaKo1312/join',
             liveUrl: '#',
         },
         {
@@ -58,7 +58,7 @@ export class Projects {
             name: 'El Pollo Loco',
             stack: ['HTML', 'CSS', 'JavaScript'],
             image: 'images/pollo.png',
-            repoUrl: 'https://github.com/',
+            repoUrl: 'https://github.com/DaKo1312/El-Pollo-Loco',
             liveUrl: '#',
         },
         {
