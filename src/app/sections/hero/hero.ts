@@ -28,8 +28,12 @@ export class Hero {
   protected readonly email = 'kontakt@daniel-korbmacher.de';
 
   protected readonly socials: readonly SocialLink[] = [
-    { label: 'GitHub', href: 'https://github.com/', icon: GITHUB_ICON },
-    { label: 'LinkedIn', href: 'https://linkedin.com/', icon: LINKEDIN_ICON },
+    { label: 'GitHub', href: 'https://github.com/DaKo1312', icon: GITHUB_ICON },
+    {
+      label: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/daniel-korbmacher-5b8453355/',
+      icon: LINKEDIN_ICON,
+    },
   ];
 
   protected readonly marqueeGroups: readonly number[] = [0, 1];

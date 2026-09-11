@@ -11,8 +11,8 @@ import { LanguageService } from '../../core/language/language';
 })
 export class Footer {
   protected readonly t = inject(LanguageService).t;
-  protected readonly githubUrl = 'https://github.com/';
-  protected readonly linkedinUrl = 'https://linkedin.com/';
+  protected readonly githubUrl = 'https://github.com/DaKo1312';
+  protected readonly linkedinUrl = 'https://www.linkedin.com/in/daniel-korbmacher-5b8453355/';
   protected readonly mailto = 'mailto:kontakt@daniel-korbmacher.de';
 
   protected scrollToTop(): void {
