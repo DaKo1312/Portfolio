@@ -14,6 +14,7 @@ export class Footer {
   protected readonly githubUrl = 'https://github.com/DaKo1312';
   protected readonly linkedinUrl = 'https://www.linkedin.com/in/daniel-korbmacher-5b8453355/';
   protected readonly mailto = 'mailto:kontakt@daniel-korbmacher.de';
+  protected readonly year = new Date().getFullYear();
 
   protected scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });

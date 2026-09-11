@@ -63,7 +63,7 @@ describe('Footer', () => {
     expect(info).toContain('Troisdorf Germany');
 
     const copyright = fixture.nativeElement.querySelector('.footer__copyright');
-    expect(copyright.textContent.trim()).toBe('©Daniel Korbmacher 2026');
+    expect(copyright.textContent.trim()).toBe(`© Daniel Korbmacher ${new Date().getFullYear()}`);
   });
 
   it('stacks a decorative hover logo on top of the default one', () => {
