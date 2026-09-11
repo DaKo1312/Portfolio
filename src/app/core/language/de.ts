@@ -100,7 +100,7 @@ export const DE: Translations = {
   },
   contact: {
     eyebrow: 'Kontakt',
-    title: 'Lass uns zusammenarbeiten',
+    title: 'Lass uns zusammen\u00ADarbeiten',
     pitchTitle: 'Du hast ein Problem zu lösen?',
     pitchText:
       'Ermutige Besucher, dich zu kontaktieren, und beschreibe, welche Rolle dich interessiert. Zeige, dass du mit deiner Arbeit einen echten Mehrwert für ihre Projekte lieferst. Du brauchst einen Frontend-Entwickler? Lass uns sprechen!',
@@ -109,7 +109,7 @@ export const DE: Translations = {
     nameError: 'Hoppla! Dein Name fehlt noch',
     emailLabel: 'Wie lautet deine E-Mail-Adresse?',
     emailPlaceholder: 'deinemail@email.de',
-    emailError: 'Hoppla! Deine E-Mail-Adresse wird benötigt',
+    emailError: 'Hoppla! Wir brauchen eine gültige E-Mail-Adresse',
     messageLabel: 'Wie kann ich dir helfen?',
     messagePlaceholder: 'Hallo Daniel, ich interessiere mich für...',
     messageError: 'Was möchtest du entwickeln lassen?',
@@ -184,7 +184,7 @@ export const DE: Translations = {
     date: 'Stand: 9. September 2026',
   },
   privacy: {
-    title: 'Datenschutzerklärung',
+    title: 'Datenschutz\u00ADerklärung',
     addressTitle: 'Verantwortlich für die Datenverarbeitung',
     address: [
       'Daniel Korbmacher',

@@ -108,7 +108,7 @@ export const EN: Translations = {
     nameError: 'Oops! it seems your name is missing',
     emailLabel: "What's your email?",
     emailPlaceholder: 'youremail@email.com',
-    emailError: 'Hoppla! your email is required',
+    emailError: 'Oops! we need a valid email address',
     messageLabel: 'How can I help you?',
     messagePlaceholder: 'Hello Daniel, I am interested in...',
     messageError: 'What do you need to develop?',
