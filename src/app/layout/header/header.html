@@ -1,47 +1,66 @@
 <header>
-    <div class="container">
-        <button
-            class="header-burger"
-            type="button"
-            id="header-menu-toggle"
-            aria-controls="header-menu"
-            [attr.aria-expanded]="menuOpen()"
-            [attr.aria-label]="menuOpen() ? t().header.closeMenu : t().header.openMenu"
-            (click)="toggleMenu()"
-        >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </button>
+  <div class="container">
+    <button
+      class="header-burger"
+      type="button"
+      id="header-menu-toggle"
+      aria-controls="header-menu"
+      [attr.aria-expanded]="menuOpen()"
+      [attr.aria-label]="menuOpen() ? t().header.closeMenu : t().header.openMenu"
+      (click)="toggleMenu()"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
 
-        <div class="header-navigation" id="header-menu">
-            <div class="language-switch">
-            @for (option of language.languages; track option) {
-                <button
-                type="button"
-                [attr.aria-pressed]="language.current() === option"
-                [attr.aria-label]="t().header.switchTo[option]"
-                (click)="language.use(option)"
-                >
-                {{ option }}
-                </button>
-            }
-            </div>
-            <nav [attr.aria-label]="t().header.mainNavigation">
-            @for (link of navLinks; track link) {
-                <a
-                routerLink="/"
-                [fragment]="link"
-                [class.is-active]="activeLink() === link"
-                [attr.aria-current]="activeLink() === link ? 'true' : null"
-                (click)="selectLink(link)"
-                >{{ t().header.nav[link] }}</a>
-            }
-            </nav>
-        </div>
-            <a class="header-logo" routerLink="/" [attr.aria-label]="t().header.backToTop" (click)="scrollToTop()">
-                <img class="header-logo-default" src="logo/logo.png" [alt]="t().header.logoAlt" width="814" height="214" />
-                <img class="header-logo-hover" src="logo/logo1.png" alt="" aria-hidden="true" width="814" height="214" />
-            </a>
+    <div class="header-navigation" id="header-menu">
+      <div class="language-switch">
+        @for (option of language.languages; track option) {
+          <button
+            type="button"
+            [attr.aria-pressed]="language.current() === option"
+            [attr.aria-label]="t().header.switchTo[option]"
+            (click)="language.use(option)"
+          >
+            {{ option }}
+          </button>
+        }
+      </div>
+      <nav [attr.aria-label]="t().header.mainNavigation">
+        @for (link of navLinks; track link) {
+          <a
+            routerLink="/"
+            [fragment]="link"
+            [class.is-active]="activeLink() === link"
+            [attr.aria-current]="activeLink() === link ? 'true' : null"
+            (click)="selectLink(link)"
+            >{{ t().header.nav[link] }}</a
+          >
+        }
+      </nav>
     </div>
+    <a
+      class="header-logo"
+      routerLink="/"
+      [attr.aria-label]="t().header.backToTop"
+      (click)="scrollToTop()"
+    >
+      <img
+        class="header-logo-default"
+        src="logo/logo.png"
+        [alt]="t().header.logoAlt"
+        width="814"
+        height="214"
+      />
+      <img
+        class="header-logo-hover"
+        src="logo/logo1.png"
+        alt=""
+        aria-hidden="true"
+        width="814"
+        height="214"
+      />
+    </a>
+  </div>
 </header>

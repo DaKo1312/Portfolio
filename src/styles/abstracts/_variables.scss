@@ -1,43 +1,43 @@
 :root {
-    --color-primary: #3dcfb6;
-    --color-primary-muted: rgba(61, 207, 182, 0.5);
-    --color-primary-soft: rgba(61, 207, 182, 0.1);
-    --color-background: #1c1c1c;
-    --color-background-deep: #08463b;
-    --color-surface: #2a2a2a;
-    --color-text: #ffffff;
-    --color-text-muted: #c3c3c3;
-    --color-text-soft: rgba(255, 255, 255, 0.8);
-    --color-border: rgba(255, 255, 255, 0.15);
+  --color-primary: #3dcfb6;
+  --color-primary-muted: rgba(61, 207, 182, 0.5);
+  --color-primary-soft: rgba(61, 207, 182, 0.1);
+  --color-background: #1c1c1c;
+  --color-background-deep: #08463b;
+  --color-surface: #2a2a2a;
+  --color-text: #ffffff;
+  --color-text-muted: #c3c3c3;
+  --color-text-soft: rgba(255, 255, 255, 0.8);
+  --color-border: rgba(255, 255, 255, 0.15);
 
-    --font-body: 'Karla', sans-serif;
-    --font-mono: 'Fira Code', monospace;
+  --font-body: 'Karla', sans-serif;
+  --font-mono: 'Fira Code', monospace;
 
-    --content-width: 1440px;
-    --header-height: 98px;
+  --content-width: 1440px;
+  --header-height: 98px;
 
-    --gutter: clamp(1rem, 6.67vw, 96px);
+  --gutter: clamp(1rem, 6.67vw, 96px);
 
-    --page-inset: max(var(--gutter), calc((100% - var(--content-width)) / 2 + var(--gutter)));
+  --page-inset: max(var(--gutter), calc((100% - var(--content-width)) / 2 + var(--gutter)));
 
-    --space-xs: 0.25rem;
-    --space-sm: 0.5rem;
-    --space-md: 1rem;
-    --space-lg: 1.5rem;
-    --space-xl: 2rem;
-    --space-2xl: 4rem;
-    --space-3xl: 6rem;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
 
-    --radius-sm: 0.5rem;
-    --radius-md: 1rem;
-    --radius-lg: 2rem;
-    --radius-xl: 30px;
-    --radius-pill: 9999px;
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 30px;
+  --radius-pill: 9999px;
 
-    --transition-fast: 150ms ease-in-out;
-    --transition-base: 250ms ease-in-out;
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 250ms ease-in-out;
 
-    --z-header: 100;
-    --z-overlay: 500;
-    --z-modal: 1000;
+  --z-header: 100;
+  --z-overlay: 500;
+  --z-modal: 1000;
 }

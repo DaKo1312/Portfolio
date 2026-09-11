@@ -72,7 +72,9 @@
           [class.contact__field--error]="messageError()"
           (click)="messageShown.set(!messageShown()); messageRef.focus()"
         >
-          <span class="contact__label" id="contact-message-label">{{ t().contact.messageLabel }}</span>
+          <span class="contact__label" id="contact-message-label">{{
+            t().contact.messageLabel
+          }}</span>
           <span class="contact__control">
             <textarea
               #messageRef
@@ -119,7 +121,8 @@
               {{ t().contact.privacyBefore
               }}<a class="contact__link" routerLink="/privacy-policy">{{
                 t().contact.privacyLink
-              }}</a>{{ t().contact.privacyAfter }}
+              }}</a
+              >{{ t().contact.privacyAfter }}
             </span>
           </label>
 
