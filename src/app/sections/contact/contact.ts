@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../core/language/language';
 
-const FORM_ENDPOINT = 'https://api.web3forms.com/submit';
-const FORM_ACCESS_KEY = 'YOUR_ACCESS_KEY';
+const FORM_ENDPOINT = '/sendmail.php';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 type SubmitStatus = 'idle' | 'sending' | 'sent' | 'error';
@@ -21,6 +20,7 @@ export class Contact {
   protected readonly email = signal('');
   protected readonly message = signal('');
   protected readonly accepted = signal(false);
+  protected readonly website = signal('');
   protected readonly nameShown = signal(false);
   protected readonly emailShown = signal(false);
   protected readonly messageShown = signal(false);
@@ -65,22 +65,16 @@ export class Contact {
       return;
     }
 
-    if (FORM_ACCESS_KEY === 'YOUR_ACCESS_KEY') {
-      this.status.set('error');
-      console.warn('[contact] FORM_ACCESS_KEY ist noch der Platzhalter — Versand deaktiviert.');
-      return;
-    }
-
     this.status.set('sending');
     try {
       const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          access_key: FORM_ACCESS_KEY,
           name: this.name().trim(),
           email: this.email().trim(),
           message: this.message().trim(),
+          website: this.website(),
         }),
       });
       if (!response.ok) {
@@ -98,6 +92,7 @@ export class Contact {
     this.email.set('');
     this.message.set('');
     this.accepted.set(false);
+    this.website.set('');
     this.nameShown.set(false);
     this.emailShown.set(false);
     this.messageShown.set(false);

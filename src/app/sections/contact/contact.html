@@ -92,6 +92,18 @@
         </div>
       </div>
 
+      <div class="contact__honeypot" aria-hidden="true">
+        <input
+          #websiteRef
+          type="text"
+          name="website"
+          tabindex="-1"
+          autocomplete="off"
+          [value]="website()"
+          (input)="website.set(websiteRef.value)"
+        />
+      </div>
+
       <div class="contact__consent">
         <div class="contact__consent-row">
           <label class="contact__checkbox">
