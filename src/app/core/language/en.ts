@@ -137,7 +137,7 @@ export const EN: Translations = {
       'Uckendorferstr. 6a',
       '53844 Troisdorf',
       'Germany',
-      'Email: kontakt@daniel-korbmacher.de',
+      'Email: contact@daniel-korbmacher.de',
     ],
     sections: [
       {
@@ -175,7 +175,7 @@ export const EN: Translations = {
         title: 'Indemnity',
         paragraphs: [
           'You agree to indemnify, defend and hold harmless me, the Developer Akademie, and our affiliates, partners, officers, directors, agents, and employees, from and against any claim, demand, loss, damage, cost, or liability (including reasonable legal fees) arising out of or relating to your use of this portfolio and/or your breach of this Legal Notice.',
-          'For any questions or notices, please contact me at kontakt@daniel-korbmacher.de.',
+          'For any questions or notices, please contact me at contact@daniel-korbmacher.de.',
         ],
       },
     ],
@@ -189,7 +189,7 @@ export const EN: Translations = {
       'Uckendorferstr. 6a',
       '53844 Troisdorf',
       'Germany',
-      'Email: kontakt@daniel-korbmacher.de',
+      'Email: contact@daniel-korbmacher.de',
     ],
     sections: [
       {

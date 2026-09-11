@@ -25,7 +25,7 @@ export class Hero {
 
   protected readonly name = 'Daniel Korbmacher';
 
-  protected readonly email = 'kontakt@daniel-korbmacher.de';
+  protected readonly email = 'contact@daniel-korbmacher.de';
 
   protected readonly socials: readonly SocialLink[] = [
     { label: 'GitHub', href: 'https://github.com/DaKo1312', icon: GITHUB_ICON },

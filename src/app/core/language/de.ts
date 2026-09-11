@@ -138,7 +138,7 @@ export const DE: Translations = {
       'Uckendorferstr. 6a',
       '53844 Troisdorf',
       'Deutschland',
-      'E-Mail: kontakt@daniel-korbmacher.de',
+      'E-Mail: contact@daniel-korbmacher.de',
     ],
     sections: [
       {
@@ -176,7 +176,7 @@ export const DE: Translations = {
         title: 'Freistellung',
         paragraphs: [
           'Du stellst mich, die Developer Akademie sowie unsere verbundenen Unternehmen, Partner, Führungskräfte, Geschäftsführer, Vertreter und Mitarbeitenden von allen Ansprüchen, Forderungen, Verlusten, Schäden, Kosten oder Haftungen frei, einschließlich angemessener Rechtsverfolgungskosten, die aus deiner Nutzung dieses Portfolios oder aus einem Verstoß gegen dieses Impressum entstehen.',
-          'Bei Fragen oder Hinweisen erreichst du mich unter kontakt@daniel-korbmacher.de.',
+          'Bei Fragen oder Hinweisen erreichst du mich unter contact@daniel-korbmacher.de.',
         ],
       },
     ],
@@ -190,7 +190,7 @@ export const DE: Translations = {
       'Uckendorferstr. 6a',
       '53844 Troisdorf',
       'Deutschland',
-      'E-Mail: kontakt@daniel-korbmacher.de',
+      'E-Mail: contact@daniel-korbmacher.de',
     ],
     sections: [
       {
