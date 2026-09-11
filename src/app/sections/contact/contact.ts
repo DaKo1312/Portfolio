@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@a
 import { RouterLink } from '@angular/router';
 import { LanguageService } from '../../core/language/language';
 
-const FORM_ENDPOINT = 'https://api.web3forms.com/submit'
+const FORM_ENDPOINT = 'https://api.web3forms.com/submit';
 const FORM_ACCESS_KEY = 'YOUR_ACCESS_KEY';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
