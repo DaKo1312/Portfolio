@@ -69,7 +69,6 @@ export const EN: Translations = {
       join: 'Task manager inspired by the Kanban System. Create and organize tasks using drag and drop functions, assign users and categories.',
       pollo:
         'Jump-and-run game built with vanilla JavaScript and the Canvas API. Object-oriented game loop with collision detection, sprite animations, sound and a final boss fight.',
-      bubble: 'Short description of DA Bubble goes here.',
     },
   },
   references: {

@@ -70,7 +70,6 @@ export const DE: Translations = {
       join: 'Aufgabenverwaltung nach dem Kanban-Prinzip. Aufgaben per Drag and Drop anlegen und ordnen, Nutzer und Kategorien zuweisen.',
       pollo:
         'Jump-and-Run-Spiel mit purem JavaScript und der Canvas-API. Objektorientierte Game-Loop mit Kollisionsabfrage, Sprite-Animationen, Sound und Endgegner-Kampf.',
-      bubble: 'Hier steht eine kurze Beschreibung von DA Bubble.',
     },
   },
   references: {

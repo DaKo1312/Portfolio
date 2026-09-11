@@ -35,17 +35,16 @@ describe('Projects', () => {
     it('should render every project with its stack', () => {
         const items = element.querySelectorAll('.projects__item');
 
-        expect(items.length).toBe(3);
+        expect(items.length).toBe(2);
         expect(items[0].querySelector('.projects__name')?.textContent?.trim()).toContain('Join');
         expect(items[0].querySelectorAll('.projects__technology').length).toBe(5);
         expect(items[1].querySelector('.projects__name')?.textContent?.trim()).toContain('El Pollo Loco');
-        expect(items[2].querySelector('.projects__name')?.textContent?.trim()).toContain('DA Bubble');
     });
 
     it('should give every project a keyboard-accessible trigger', () => {
         const triggers = element.querySelectorAll<HTMLButtonElement>('.projects__trigger');
 
-        expect(triggers.length).toBe(3);
+        expect(triggers.length).toBe(2);
         expect(triggers[0].getAttribute('aria-label')).toBe('Open Join project details');
     });
 
@@ -81,8 +80,8 @@ describe('Projects', () => {
     });
 
     it('should pad the project number to two digits', () => {
-        openProject(2);
-        expect(element.querySelector('.projects__dialog-index')?.textContent?.trim()).toBe('03');
+        openProject(1);
+        expect(element.querySelector('.projects__dialog-index')?.textContent?.trim()).toBe('02');
     });
 
     it('should render an icon for every technology in the overlay', () => {
@@ -106,7 +105,7 @@ describe('Projects', () => {
     });
 
     it('should advance to the next project and wrap around', () => {
-        openProject(2);
+        openProject(1);
         element.querySelector<HTMLButtonElement>('.projects__next')?.click();
         fixture.detectChanges();
 

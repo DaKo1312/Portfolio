@@ -1,6 +1,6 @@
 export type Language = 'EN' | 'DE';
 
-export type ProjectId = 'join' | 'pollo' | 'bubble';
+export type ProjectId = 'join' | 'pollo';
 
 export interface Reference {
   readonly quote: string;

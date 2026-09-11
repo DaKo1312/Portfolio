@@ -61,14 +61,6 @@ export class Projects {
             repoUrl: 'https://github.com/DaKo1312/El-Pollo-Loco',
             liveUrl: '#',
         },
-        {
-            id: 'bubble',
-            name: 'DA Bubble',
-            stack: ['Angular', 'Firebase', 'TypeScript'],
-            image: 'images/bubble.png',
-            repoUrl: 'https://github.com/',
-            liveUrl: '#',
-        },
     ]);
 
     protected readonly openIndex = signal<number | null>(null);
