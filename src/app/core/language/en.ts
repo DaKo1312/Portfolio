@@ -134,8 +134,8 @@ export const EN: Translations = {
     addressTitle: 'Imprint',
     address: [
       'Daniel Korbmacher',
-      '[Street and house number]',
-      '[Postcode] Troisdorf',
+      'Uckendorferstr. 6a',
+      '53844 Troisdorf',
       'Germany',
       'Email: kontakt@daniel-korbmacher.de',
     ],
@@ -186,8 +186,8 @@ export const EN: Translations = {
     addressTitle: 'Responsible for data processing',
     address: [
       'Daniel Korbmacher',
-      '[Street and house number]',
-      '[Postcode] Troisdorf',
+      'Uckendorferstr. 6a',
+      '53844 Troisdorf',
       'Germany',
       'Email: kontakt@daniel-korbmacher.de',
     ],

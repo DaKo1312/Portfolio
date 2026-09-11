@@ -135,8 +135,8 @@ export const DE: Translations = {
     addressTitle: 'Angaben gemäß § 5 DDG',
     address: [
       'Daniel Korbmacher',
-      '[Straße und Hausnummer]',
-      '[PLZ] Troisdorf',
+      'Uckendorferstr. 6a',
+      '53844 Troisdorf',
       'Deutschland',
       'E-Mail: kontakt@daniel-korbmacher.de',
     ],
@@ -187,8 +187,8 @@ export const DE: Translations = {
     addressTitle: 'Verantwortlich für die Datenverarbeitung',
     address: [
       'Daniel Korbmacher',
-      '[Straße und Hausnummer]',
-      '[PLZ] Troisdorf',
+      'Uckendorferstr. 6a',
+      '53844 Troisdorf',
       'Deutschland',
       'E-Mail: kontakt@daniel-korbmacher.de',
     ],
