@@ -51,7 +51,7 @@ export class Projects {
       stack: ['Angular', 'TypeScript', 'HTML', 'CSS', 'Supabase'],
       image: 'images/join.png',
       repoUrl: 'https://github.com/DaKo1312/join',
-      liveUrl: 'https://join.daniel-korbmacher.de',
+      liveUrl: 'https://daniel-korbmacher.de/join/',
     },
     {
       id: 'pollo',
@@ -59,7 +59,7 @@ export class Projects {
       stack: ['HTML', 'CSS', 'JavaScript'],
       image: 'images/pollo.png',
       repoUrl: 'https://github.com/DaKo1312/El-Pollo-Loco',
-      liveUrl: 'https://el-pollo-loco.daniel-korbmacher.de',
+      liveUrl: 'https://daniel-korbmacher.de/el-pollo-loco/',
     },
   ]);
 
