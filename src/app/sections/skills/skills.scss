@@ -208,3 +208,20 @@
   text-align: center;
   color: var(--color-text);
 }
+
+@media (max-width: 30rem) {
+  .skills__list {
+    flex-basis: 100%;
+    justify-content: center;
+    gap: 32px 8px;
+  }
+
+  .skills__item {
+    width: calc((100% - 18px) / 3);
+  }
+
+  .skills__label {
+    height: auto;
+    font-size: 1rem;
+  }
+}
