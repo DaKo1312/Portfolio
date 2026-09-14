@@ -24,9 +24,7 @@
     <ul class="skills__list">
       @for (skill of skills(); track skill.name) {
         <li class="skills__item">
-          <svg class="skills__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path [attr.d]="skill.icon" />
-          </svg>
+          <img class="skills__icon" [src]="skill.icon" alt="" aria-hidden="true" />
           <span class="skills__label">{{ skill.name }}</span>
         </li>
       }

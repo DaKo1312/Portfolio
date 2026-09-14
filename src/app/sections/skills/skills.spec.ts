@@ -22,15 +22,15 @@ describe('Skills', () => {
   it('should render every skill of the list', () => {
     const items = fixture.nativeElement.querySelectorAll('.skills__item');
 
-    expect(items.length).toBe(8);
+    expect(items.length).toBe(11);
   });
 
-  it('should render an icon path for every skill', () => {
-    const paths: NodeListOf<SVGPathElement> =
-      fixture.nativeElement.querySelectorAll('.skills__icon path');
+  it('should render an icon file for every skill', () => {
+    const icons: NodeListOf<HTMLImageElement> =
+      fixture.nativeElement.querySelectorAll('img.skills__icon');
 
-    expect(paths.length).toBe(8);
-    paths.forEach((path) => expect(path.getAttribute('d')?.length).toBeGreaterThan(0));
+    expect(icons.length).toBe(11);
+    icons.forEach((icon) => expect(icon.getAttribute('src')).toMatch(/^img-icons\/.+\.svg$/));
   });
 
   it('should link the contact button to the contact section', () => {
