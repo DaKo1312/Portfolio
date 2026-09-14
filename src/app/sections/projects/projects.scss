@@ -159,10 +159,11 @@
 @media (hover: hover) and (min-width: 1200px) {
   .projects__preview {
     position: absolute;
-    inset-block-start: -1px;
+    inset-block-start: 50%;
     inset-inline-start: calc(100% + clamp(2rem, 4.7vw, 72px));
     display: block;
     width: min(293px, 22vw);
+    transform: translateY(-50%);
   }
 
   .projects__preview::after {
