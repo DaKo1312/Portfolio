@@ -152,6 +152,19 @@
   }
 }
 
+@media (max-width: 36rem) {
+  .projects__item {
+    flex-direction: column;
+    padding-inline: 0;
+    align-items: flex-start;
+    align-content: flex-start;
+  }
+
+  .projects__stack {
+    justify-content: flex-start;
+  }
+}
+
 .projects__preview {
   display: none;
 }
